@@ -33,7 +33,7 @@ int main()
         {
             while (frei == 0)
             {
-                printf("\n--------------\n");
+                printf("\n--------------");
                 board();
                 printf("In welchen Feld willst du deine 1 schreiben?\n");
                 printf("X-Koordinate: ");
@@ -52,16 +52,14 @@ int main()
                     frei = 1;
                 }
             }
-            winReturn = winCheck();
-
-            if (winReturn == 1)
+            if (winCheck() == 1)
             {
-                printf("-------------------------");
+                printf("-------------------------\n");
                 printf("\n!!!Spieler 1 hat gewonnen!!!\n");
                 printf("-------------------------\n");
                 board();
                 win = 1;
-            }
+            }            
             else{
                 frei = 0;
             }
@@ -116,8 +114,21 @@ int winCheck(){
     else
     {
         return 0;
+    }  
+}
+
+/*int drawCheck(){
+    if (array[0][0] != 0 && array[0][1] != 0 && array[0][2] != 0 &&
+        array[1][0] != 0 && array[1][1] != 0 && array[1][2] != 0 &&
+        array[2][0] != 0 && array[2][1] != 0 && array[2][2] != 0 &&
+        winCheck == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
     }
     
     
-    
-}
+}*/
