@@ -82,7 +82,7 @@ int main()
                 {
                     printf("\n--------------");
                     board();
-                    printf("\nSpieler 2,\nin welchen Feld willst du deine Q schreiben?\n");
+                    printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
                     printf("X-Koordinate: ");
                     scanf("%d", &xP2);
                     printf("Y-Koordinate: ");
@@ -95,7 +95,7 @@ int main()
                     }
                     else
                     {
-                        array[yP2 - 1][xP2 - 1] = 'Q';
+                        array[yP2 - 1][xP2 - 1] = 'O';
                         frei = 1;
                     }
                 }
@@ -124,7 +124,96 @@ int main()
     }
     else if (spielerAuswahl == 2)
     {
-        printf("d");
+        while (win == 0)
+        {
+            while (frei == 0)
+            {
+                printf("\n--------------");
+                board();
+                printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
+                printf("X-Koordinate: ");
+                scanf("%d", &xP2);
+                printf("Y-Koordinate: ");
+                scanf("%d", &yP2);
+
+                if (array[yP2 - 1][xP2 - 1] != ' ')
+                {
+                    printf("\nACHTUNG!\n");
+                    printf("!!!Dieses Feld ist bereits benutzt!!!");
+                }
+                else
+                {
+                    array[yP2 - 1][xP2 - 1] = 'O';
+                    frei = 1;
+                }
+            }
+            if (winCheckP2() == 1)
+            {
+                board();
+                printf("-------------------------");
+                printf("\n!!!Spieler 2 hat gewonnen!!!\n");
+                printf("-------------------------\n");
+                win = 1;
+            }
+
+            else if (drawCheck() == 1)
+            {
+                board();
+                printf("-------------------------");
+                printf("\n!!!UNENTSCHIEDEN!!!\n");
+                printf("-------------------------\n");
+                win = 1;
+            }
+            else
+            {
+                frei = 0;
+            }
+            // Spieler 2
+            if (win == 0)
+            {
+                while (frei == 0)
+                {
+                    printf("\n--------------");
+                    board();
+                    printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
+                    printf("X-Koordinate: ");
+                    scanf("%d", &xP1);
+                    printf("Y-Koordinate: ");
+                    scanf("%d", &yP1);
+
+                    if (array[yP1 - 1][xP1 - 1] != ' ')
+                    {
+                        printf("\nACHTUNG!\n");
+                        printf("!!!Dieses Feld ist bereits benutzt!!!");
+                    }
+                    else
+                    {
+                        array[yP1 - 1][xP1 - 1] = 'X';
+                        frei = 1;
+                    }
+                }
+                if (winCheckP1() == 1)
+                {
+                    board();
+                    printf("-------------------------");
+                    printf("\n!!!Spieler 1 hat gewonnen!!!\n");
+                    printf("-------------------------\n");
+                    win = 1;
+                }
+                else if (drawCheck() == 1)
+                {
+                    board();
+                    printf("-------------------------");
+                    printf("\n!!!UNENTSCHIEDEN!!!\n");
+                    printf("-------------------------\n");
+                    win = 1;
+                }
+                else
+                {
+                    frei = 0;
+                }
+            }
+        }
     }
 
     else
@@ -155,52 +244,65 @@ void board()
 
 int winCheckP1()
 {
-    if (array[0][0] == 'X' && array[0][1] == 'X' && array[0][2] == 'X' || // Kontrolliert horizontale Felder
-        array[1][0] == 'X' && array[1][1] == 'X' && array[1][2] == 'X' ||
-        array[2][0] == 'X' && array[2][1] == 'X' && array[2][2] == 'X' ||
-
-        array[0][0] == 'X' && array[1][0] == 'X' && array[2][0] == 'X' || // Kontrolliert vertikale Felder
-        array[0][1] == 'X' && array[1][1] == 'X' && array[2][1] == 'X' ||
-        array[0][2] == 'X' && array[1][2] == 'X' && array[2][2] == 'X' ||
-
-        array[0][0] == 'X' && array[1][1] == 'X' && array[2][2] == 'X' || // Kontrolliert Kreuz
-        array[2][0] == 'X' && array[1][1] == 'X' && array[0][2] == 'X')
+    for (int i = 0; i < 3; i++)
     {
-        return 1;
+        if (array[i][0] == 'X' && array[i][1] == 'X' && array[i][2] == 'X')
+        {
+            return 1; // Horizontale Zeile gefunden
+        }
+
+        if (array[0][i] == 'X' && array[1][i] == 'X' && array[2][i] == 'X')
+        {
+            return 1; // Vertikale Spalte gefunden
+        }
     }
-    else
+
+    if (array[0][0] == 'X' && array[1][1] == 'X' && array[2][2] == 'X')
     {
-        return 0;
+        return 1; // Diagonale von links oben nach rechts unten gefunden
     }
+    if (array[2][0] == 'X' && array[1][1] == 'X' && array[0][2] == 'X')
+    {
+        return 1; // Diagonale von links unten nach rechts oben gefunden
+    }
+
+    return 0; // Kein Gewinner gefunden
 }
 
 int winCheckP2()
 {
-    if (array[0][0] == 'Q' && array[0][1] == 'Q' && array[0][2] == 'Q' || // Kontrolliert horizontale Felder
-        array[1][0] == 'Q' && array[1][1] == 'Q' && array[1][2] == 'Q' ||
-        array[2][0] == 'Q' && array[2][1] == 'Q' && array[2][2] == 'Q' ||
-
-        array[0][0] == 'Q' && array[1][0] == 'Q' && array[2][0] == 'Q' || // Kontrolliert vertikale Felder
-        array[0][1] == 'Q' && array[1][1] == 'Q' && array[2][1] == 'Q' ||
-        array[0][2] == 'Q' && array[1][2] == 'Q' && array[2][2] == 'Q' ||
-
-        array[0][0] == 'Q' && array[1][1] == 'Q' && array[2][2] == 'Q' || // Kontrolliert Kreuz
-        array[2][0] == 'Q' && array[1][1] == 'Q' && array[0][2] == 'Q')
+    for (int i = 0; i < 3; i++)
     {
-        return 1;
+        if (array[i][0] == 'O' && array[i][1] == 'O' && array[i][2] == 'O')
+        {
+            return 1; // Horizontale Zeile gefunden
+        }
+
+        if (array[0][i] == 'O' && array[1][i] == 'O' && array[2][i] == 'O')
+        {
+            return 1; // Vertikale Spalte gefunden
+        }
     }
-    else
+
+    if (array[0][0] == 'O' && array[1][1] == 'O' && array[2][2] == 'O')
     {
-        return 0;
+        return 1; // Diagonale von links oben nach rechts unten gefunden
     }
+
+    if (array[2][0] == 'O' && array[1][1] == 'O' && array[0][2] == 'O')
+    {
+        return 1; // Diagonale von links unten nach rechts oben gefunden
+    }
+
+    return 0; // Kein Gewinner gefunden
 }
 
 int drawCheck()
 {
+
     if (array[0][0] != ' ' && array[0][1] != ' ' && array[0][2] != ' ' &&
         array[1][0] != ' ' && array[1][1] != ' ' && array[1][2] != ' ' &&
-        array[2][0] != ' ' && array[2][1] != ' ' && array[2][2] != ' ' &&
-        (winCheckP1() == 0 || winCheckP2() == 0))
+        array[2][0] != ' ' && array[2][1] != ' ' && array[2][2] != ' ')
     {
         return 1;
     }
