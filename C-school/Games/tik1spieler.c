@@ -12,6 +12,14 @@ char array[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '}};
 
+//Function index
+
+void board();
+int winCheckP1();
+int winCheckP2();
+int drawCheck();
+
+
 int main()
 {
     int spielerAuswahl = 0;
@@ -23,7 +31,7 @@ int main()
     int win = 0;
     int winReturn = 0;
 
-    printf("Wilkommen zu TikTakToe!\n");
+    printf("\nWilkommen zu TikTakToe!\n");
     printf("------------------------\n");
     printf("Welcher Spieler soll beginnen?\n");
     printf("----> ");
