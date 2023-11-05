@@ -31,11 +31,13 @@ int main()
     int win = 0;
     int winReturn = 0;
 
+    system("clear");
     printf("\nWilkommen zu TikTakToe!\n");
     printf("------------------------\n");
     printf("Welcher Spieler soll beginnen?\n");
     printf("----> ");
     scanf("%d", &spielerAuswahl);
+    
 
     if (spielerAuswahl == 1)
     {
@@ -43,6 +45,7 @@ int main()
         {
             while (frei == 0)
             {
+                system("clear");
                 printf("\n--------------");
                 board();
                 printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
@@ -50,6 +53,7 @@ int main()
                 scanf("%d", &xP1);
                 printf("Y-Koordinate: ");
                 scanf("%d", &yP1);
+                system("clear");
 
                 if (array[yP1 - 1][xP1 - 1] != ' ')
                 {
@@ -64,6 +68,7 @@ int main()
             }
             if (winCheckP1() == 1)
             {
+                system("clear");
                 board();
                 printf("-------------------------");
                 printf("\n!!!Spieler 1 hat gewonnen!!!\n");
@@ -73,6 +78,7 @@ int main()
 
             else if (drawCheck() == 1)
             {
+                system("clear");
                 board();
                 printf("-------------------------");
                 printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -88,6 +94,7 @@ int main()
             {
                 while (frei == 0)
                 {
+                    system("clear");
                     printf("\n--------------");
                     board();
                     printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
@@ -109,6 +116,7 @@ int main()
                 }
                 if (winCheckP2() == 1)
                 {
+                    system("clear");
                     board();
                     printf("-------------------------");
                     printf("\n!!!Spieler 2 hat gewonnen!!!\n");
@@ -117,6 +125,7 @@ int main()
                 }
                 else if (drawCheck() == 1)
                 {
+                    system("clear");
                     board();
                     printf("-------------------------");
                     printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -136,6 +145,7 @@ int main()
         {
             while (frei == 0)
             {
+                system("clear");
                 printf("\n--------------");
                 board();
                 printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
@@ -157,6 +167,7 @@ int main()
             }
             if (winCheckP2() == 1)
             {
+                system("clear");
                 board();
                 printf("-------------------------");
                 printf("\n!!!Spieler 2 hat gewonnen!!!\n");
@@ -166,6 +177,7 @@ int main()
 
             else if (drawCheck() == 1)
             {
+                system("clear");
                 board();
                 printf("-------------------------");
                 printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -181,6 +193,7 @@ int main()
             {
                 while (frei == 0)
                 {
+                    system("clear");
                     printf("\n--------------");
                     board();
                     printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
@@ -202,6 +215,7 @@ int main()
                 }
                 if (winCheckP1() == 1)
                 {
+                    system("clear");
                     board();
                     printf("-------------------------");
                     printf("\n!!!Spieler 1 hat gewonnen!!!\n");
@@ -210,6 +224,7 @@ int main()
                 }
                 else if (drawCheck() == 1)
                 {
+                    system("clear");
                     board();
                     printf("-------------------------");
                     printf("\n!!!UNENTSCHIEDEN!!!\n");
