@@ -1,125 +1,523 @@
-#include <stdio.h>
-#include <math.h>
+/*
+Autor: Nicolas Höller
+File: dnfUpgrade.c
+Date: 15.10.2023
+*/
 
-int main(){
-    
-    //Initialisierung der Variablen
+#include <stdio.h>
+
+int main()
+{
+
+    int werte[4][50] = {0};
+
     int auswahl = 0;
-    int wertanzahl = 0;
     int i = 0;
     int count = 0;
-    
-    int a[21] = {0};
-    int b[21] = {0};
-    int y[21] = {0};
 
-    //Auswahl KNF oder DNF
+    // Auswahl KNF oder DNF
     printf("DNF == 1 | KNF == 2\n");
     printf("-----> ");
     scanf("%d", &auswahl);
 
-    //DNF
+    // DNF
     if (auswahl == 1)
     {
         printf("Wie viele Inputs soll dein Schaltkreis haben? (2 - 3)\n");
         printf("-----> ");
-        scanf("%d", &wertanzahl);
+        scanf("%d", &auswahl);
 
-        if (wertanzahl == 2)
+        // Überprüft ob die Eingabe 2 ist
+        if (auswahl == 2)
         {
-            //Prüft ob die angegebenen Zahlen 0 oder 1 sind
-            //Abbruchbedingung
-            while ((a[i] == 0 || a[i] == 1) && (b[i] == 0 || b[i] == 1) && (y[i] == 0 || y[i] == 1))
-            {
-                i++;
-                printf("Gib a ein: ");
-                scanf("%d", &a[i]);
-                printf("Gib b ein: ");
-                scanf("%d", &b[i]);
-                printf("Gib y ein: ");
-                scanf("%d", &y[i]);
+            printf("\n\nGib deine Werte an (Abbrechen Zahl =! 0 oder != 1 eingeben)\n\n");
 
+            while (1)
+            {
+                // Überprüft ob die angegebenen werde 1 || 0 sind
+                printf("Gib a ein: ");
+                scanf("%d", &werte[0][i]);
+                if (werte[0][i] != 0 && werte[0][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib b ein: ");
+                scanf("%d", &werte[1][i]);
+                printf("............\n");
+                if (werte[1][i] != 0 && werte[1][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib y ein: ");
+                scanf("%d", &werte[2][i]);
+                printf("------------\n");
+                if (werte[2][i] != 0 && werte[2][i] != 1)
+                {
+                    break;
+                }
+
+                i++;
             }
 
-            printf("\n\n------------\n\n");
+            printf("\n\n-----------------\n\n");
 
             i--;
+
+            // Auslesen der Zahlen und Umwandeln in verständliche Darstellung
             while (i >= 0)
             {
-                if (y[i] == 1)
+                // Ablesen ob y 1 ist da man sich bei DNF auf die 1 richtet
+                if (werte[2][i] == 1)
                 {
-                    if (a[i] == 1 && b[i] == 1)
+                    if (werte[0][i] == 0 && werte[1][i] == 0)
                     {
-                        printf("(A AND B) OR ");
+                        printf("(NOT A AND NOT B)");
+                        // Wird benötigt damit am Ende nicht ein "OR" steht
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
                     }
-                    else if (a[i] == 1 && b[i] == 0)
+                    else if (werte[0][i] == 0 && werte[1][i] == 1)
                     {
-                        printf("(A AND NOT A) OR ");
+                        printf("(NOT A AND B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
                     }
-                    else if (a[i] == 0 && b[i] == 1)
+                    else if (werte[0][i] == 1 && werte[1][i] == 0)
                     {
-                        printf("(NOT A AND B) OR ");
+                        printf("(A AND NOT B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
                     }
-                    else{
-                        printf("(NOT A AND NOT B) OR ");
-                    }                             
-                } 
+                    else
+                    {
+                        printf("(A AND B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
                 i--;
             }
-            
-
-            while (i > 0)
-            {
-                printf("%d\n", a[i]);
-                printf("%d\n", b[i]);
-                printf("%d\n", y[i]);
-                i--;
-            }
-            
-            
-            
-            return 0;
         }
 
-        if (wertanzahl == 3)
+        else if (auswahl == 3)
         {
+            printf("\n\nGib deine Werte an (Abbrechen Zahl =! 0 oder != 1 eingeben)\n\n");
 
-            return 0;
+            while (1)
+            {
+                // Überprüft ob die angegebenen werde 1 || 0 sind
+                printf("Gib a ein: ");
+                scanf("%d", &werte[0][i]);
+                if (werte[0][i] != 0 && werte[0][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib b ein: ");
+                scanf("%d", &werte[1][i]);
+                if (werte[1][i] != 0 && werte[1][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib c ein: ");
+                scanf("%d", &werte[2][i]);
+                printf("............\n");
+                if (werte[2][i] != 0 && werte[2][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib y ein: ");
+                scanf("%d", &werte[3][i]);
+                printf("------------\n");
+                if (werte[3][i] != 0 && werte[3][i] != 1)
+                {
+                    break;
+                }
+
+                i++;
+            }
+
+            printf("\n\n-----------------\n\n");
+
+            i--;
+
+            while (i >= 0)
+            {
+                if (werte[3][i] == 1)
+                {
+                    if (werte[0][i] == 0 && werte[1][i] == 0 && werte[2][i] == 0)
+                    {
+                        printf("(NOT A AND NOT B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 0 && werte[2][i] == 1)
+                    {
+                        printf("(NOT A AND NOT B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 1 && werte[2][i] == 0)
+                    {
+                        printf("(NOT A AND B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 1 && werte[2][i] == 1)
+                    {
+                        printf("(NOT A AND B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 0 && werte[2][i] == 0)
+                    {
+                        printf("(A AND NOT B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 0 && werte[2][i] == 1)
+                    {
+                        printf("(A AND NOT B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 1 && werte[2][i] == 0)
+                    {
+                        printf("(A AND B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                        printf("(A AND B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+                i--;
+            }
         }
 
-        //Abbruch des Programm wegen falscher Benutung
-        if (wertanzahl != 2 && wertanzahl != 3)
+        // Abbruch des Programms wegen falscher eingabe
+        else
         {
             printf("Deine Wertetabelle muss 2 - 3 Inputs haben\n");
-            return 0;
         }
-        
+        return 0;
     }
 
-    //KNF
+    //--------------------------------------------------------------------------------
+
+    // KNF
     if (auswahl == 2)
     {
         printf("Wie viele Inputs soll dein Schaltkreis haben? (2 - 3)\n");
-        scanf("%d", &wertanzahl);
+        printf("-----> ");
+        scanf("%d", &auswahl);
 
-        if (wertanzahl == 2)
+        // Überprüft ob die Eingabe 2 ist
+        if (auswahl == 2)
         {
-            
-            return 0;
+            printf("\n\nGib deine Werte an (Abbrechen Zahl =! 0 oder != 1 eingeben)\n\n");
+
+            while (1)
+            {
+                // Überprüft ob die angegebenen werde 1 || 0 sind
+                printf("Gib a ein: ");
+                scanf("%d", &werte[0][i]);
+                if (werte[0][i] != 0 && werte[0][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib b ein: ");
+                scanf("%d", &werte[1][i]);
+                printf("............\n");
+                if (werte[1][i] != 0 && werte[1][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib y ein: ");
+                scanf("%d", &werte[2][i]);
+                printf("------------\n");
+                if (werte[2][i] != 0 && werte[2][i] != 1)
+                {
+                    break;
+                }
+
+                i++;
+            }
+
+            printf("\n\n-----------------\n\n");
+
+            i--;
+
+            // Auslesen der Zahlen und Umwandeln in verständliche Darstellung
+            while (i >= 0)
+            {
+                // Ablesen ob y 1 ist da man sich bei DNF auf die 1 richtet
+                if (werte[3][i] == 0)
+                {
+                    if (werte[0][i] == 0 && werte[1][i] == 0)
+                    {
+                        printf("(A AND B)");
+                        // Wird benötigt damit am Ende nicht ein "OR" steht
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 1)
+                    {
+                        printf("(A AND NOT B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 0)
+                    {
+                        printf("(NOT A AND B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                        printf("(NOT A AND NOT B)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+                i--;
+            }
         }
-        if (wertanzahl == 3)
+
+        else if (auswahl == 3)
         {
+            printf("\n\nGib deine Werte an (Abbrechen Zahl =! 0 oder != 1 eingeben)\n\n");
 
-            return 0;
+            while (1)
+            {
+                // Überprüft ob die angegebenen werde 1 || 0 sind
+
+                printf("Gib a ein: ");
+                scanf("%d", &werte[0][i]);
+                if (werte[0][i] != 0 && werte[0][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib b ein: ");
+                scanf("%d", &werte[1][i]);
+                if (werte[1][i] != 0 && werte[1][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib c ein: ");
+                scanf("%d", &werte[2][i]);
+                printf("............\n");
+                if (werte[2][i] != 0 && werte[2][i] != 1)
+                {
+                    break;
+                }
+                printf("Gib y ein: ");
+                scanf("%d", &werte[3][i]);
+                printf("------------\n");
+                if (werte[3][i] != 0 && werte[3][i] != 1)
+                {
+                    break;
+                }
+
+                i++;
+            }
+
+            printf("\n\n-----------------\n\n");
+
+            i--;
+
+            while (i >= 0)
+            {
+                if (werte[3][i] == 0)
+                {
+                    if (werte[0][i] == 0 && werte[1][i] == 0 && werte[2][i] == 0)
+                    {
+                        printf("(A AND B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 0 && werte[2][i] == 1)
+                    {
+                        printf("(A AND B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 1 && werte[2][i] == 0)
+                    {
+                        printf("(A AND NOT B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 0 && werte[1][i] == 1 && werte[2][i] == 1)
+                    {
+                        printf("(A AND NOT B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 0 && werte[2][i] == 0)
+                    {
+                        printf("(NOT A AND B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 0 && werte[2][i] == 1)
+                    {
+                        printf("(NOT A AND B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else if (werte[0][i] == 1 && werte[1][i] == 1 && werte[2][i] == 0)
+                    {
+                        printf("(NOT A AND NOT B AND C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                        printf("(NOT A AND NOT B AND NOT C)");
+                        if (i > 0)
+                        {
+                            printf(" OR ");
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+                i--;
+            }
         }
 
-        //Abbruch des Programm wegen falscher Benutung
-        if (wertanzahl != 2 && wertanzahl != 3)
+        // Abbruch des Programms wegen falscher eingabe
+        else
         {
             printf("Deine Wertetabelle muss 2 - 3 Inputs haben\n");
-            return 0;
         }
-        
+    }
+
+    return 0;
+
+    // Abbruch
+    if (auswahl != 1 && auswahl != 2)
+    {
+        printf("Gib 1 (Für DNF) oder 2 (Für KNF) ein");
     }
 
     return 0;
