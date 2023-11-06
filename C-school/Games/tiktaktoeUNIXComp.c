@@ -49,7 +49,7 @@ int main()
                 system("clear");
                 printf("\n--------------");
                 board();
-                printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
+                printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
                 printf("X-Koordinate: ");
                 scanf("%d", &xP1);
                 printf("Y-Koordinate: ");
@@ -72,7 +72,7 @@ int main()
                 system("clear");
                 board();
                 printf("-------------------------");
-                printf("\n!!!Spieler 1 hat gewonnen!!!\n");
+                printf("\n!!!Der Spieler hat gewonnen!!!\n");
                 printf("-------------------------\n");
                 win = 1;
             }
@@ -98,13 +98,12 @@ int main()
                     system("clear");
                     printf("\n--------------");
                     board();
-                    xC2 = rand() % 2 + 1;
-                    yC2 = rand() % 2 + 1;
+                    xC2 = rand() % 3;
+                    yC2 = rand() % 3;
 
                     if (array[yC2][xC2] != ' ')
                     {
-                        printf("\nACHTUNG!\n");
-                        printf("!!!Dieses Feld ist bereits benutzt!!!");
+                        continue;
                     }
                     else
                     {
@@ -151,8 +150,7 @@ int main()
 
                 if (array[yC2][xC2] != ' ')
                 {
-                    printf("\nACHTUNG!\n");
-                    printf("!!!Dieses Feld ist bereits benutzt!!!");
+                    continue;
                 }
                 else
                 {
@@ -165,7 +163,7 @@ int main()
                 system("clear");
                 board();
                 printf("-------------------------");
-                printf("\n!!!Spieler 2 hat gewonnen!!!\n");
+                printf("\n!!!Der Computer hat gewonnen!!!\n");
                 printf("-------------------------\n");
                 win = 1;
             }
@@ -191,7 +189,7 @@ int main()
                     system("clear");
                     printf("\n--------------");
                     board();
-                    printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
+                    printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
                     printf("X-Koordinate: ");
                     scanf("%d", &xP1);
                     printf("Y-Koordinate: ");
@@ -213,7 +211,7 @@ int main()
                     system("clear");
                     board();
                     printf("-------------------------");
-                    printf("\n!!!Spieler 1 hat gewonnen!!!\n");
+                    printf("\n!!!Der Spieler hat gewonnen!!!\n");
                     printf("-------------------------\n");
                     win = 1;
                 }
