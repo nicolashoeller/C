@@ -32,7 +32,7 @@ int main()
     int winReturn = 0;
 
     system("cls");
-    printf("\nWilkommen zu TikTakToe!\n");
+    printf("\nWilkommen zu Tik Tak Toe!\n");
     printf("------------------------\n");
     printf("Welcher Spieler soll beginnen?\n");
     printf("----> ");

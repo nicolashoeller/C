@@ -6,6 +6,7 @@ Date: 26.10.2023
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 
 char array[3][3] = {
@@ -33,7 +34,7 @@ int main()
     int winReturn = 0;
 
     system("clear");
-    printf("\nWilkommen zu TikTakToe!\n");
+    printf("\nWilkommen zu Tik Tak Toe!\n");
     printf("------------------------\n");
     printf("Soll der Spieler (1) oder der Computer (2) beginnen\n");
     printf("----> ");
@@ -89,7 +90,7 @@ int main()
             {
                 frei = 0;
             }
-            // Computer 2
+            // Computer
             if (win == 0)
             {
                 while (frei == 0)
@@ -116,7 +117,7 @@ int main()
                     system("clear");
                     board();
                     printf("-------------------------");
-                    printf("\n!!!Spieler 2 hat gewonnen!!!\n");
+                    printf("\n!!!Der Computer hat gewonnen!!!\n");
                     printf("-------------------------\n");
                     win = 1;
                 }
@@ -145,20 +146,17 @@ int main()
                 system("clear");
                 printf("\n--------------");
                 board();
-                printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
-                printf("X-Koordinate: ");
-                scanf("%d", &xC2);
-                printf("Y-Koordinate: ");
-                scanf("%d", &yC2);
+                xC2 = rand() % 2 + 1;
+                yC2 = rand() % 2 + 1;
 
-                if (array[yC2 - 1][xC2 - 1] != ' ')
+                if (array[yC2][xC2] != ' ')
                 {
                     printf("\nACHTUNG!\n");
                     printf("!!!Dieses Feld ist bereits benutzt!!!");
                 }
                 else
                 {
-                    array[yC2 - 1][xC2 - 1] = 'O';
+                    array[yC2][xC2] = 'O';
                     frei = 1;
                 }
             }
@@ -185,7 +183,7 @@ int main()
             {
                 frei = 0;
             }
-            // Spieler 2
+            // Spieler 1
             if (win == 0)
             {
                 while (frei == 0)

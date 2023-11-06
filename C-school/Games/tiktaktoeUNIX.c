@@ -31,7 +31,7 @@ int main()
     int winReturn = 0;
 
     system("clear");
-    printf("\nWilkommen zu TikTakToe!\n");
+    printf("\nWilkommen zu Tik Tak Toe!\n");
     printf("------------------------\n");
     printf("Welcher Spieler soll beginnen? (1 | 2)\n");
     printf("----> ");
