@@ -12,7 +12,7 @@ char array[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '}};
 
-//Function index
+//Index der Funktionen
 
 void board();
 int winCheckP1();
