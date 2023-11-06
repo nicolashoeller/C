@@ -45,9 +45,10 @@ int main()
         if (sum[i] > sum[0])
         {
             sum[0] = sum[i];
+            bigNum = i;
         }
 
     }
-    printf("\n%d", sum[0]);
+    printf("\n%d in Zeile %d", sum[0], bigNum+1);
     
 }
