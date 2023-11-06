@@ -1,6 +1,6 @@
 /*
 Autor: Nicolas Höller
-File: tik1spielr.c
+File: tiktaktoeWind.c
 Date: 26.10.2023
 */
 

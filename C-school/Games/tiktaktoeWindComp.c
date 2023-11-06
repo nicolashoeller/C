@@ -1,6 +1,6 @@
 /*
 Autor: Nicolas Höller
-File: tiktaktoeComp.c
+File: tiktaktoeWindComp.c
 Date: 26.10.2023
 */
 
