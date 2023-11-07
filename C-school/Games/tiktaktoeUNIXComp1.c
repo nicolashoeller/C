@@ -60,7 +60,7 @@ int main()
                 if (array[yP1 - 1][xP1 - 1] != ' ')
                 {
                     printf("\nACHTUNG!\n");
-                    printf("!!!Dieses Feld ist bereits benutzt!!!");
+                    printf("\n!!!Dieses Feld ist bereits benutzt!!!");
                 }
                 else
                 {
@@ -319,7 +319,6 @@ int winCheckP2()
 
 int drawCheck()
 {
-
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (array[i][j] == ' ') {
