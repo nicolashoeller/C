@@ -1,6 +1,6 @@
 /*
 Autor: Nicolas Höller
-File: tiktaktoeUNIXComp.c
+File: tiktaktoeUNIXComp0.c
 Date: 26.10.2023
 */
 
