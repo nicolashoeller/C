@@ -98,6 +98,7 @@ int main()
                     system("cls");
                     printf("\n--------------");
                     board();
+                    sleep(1);
                     xC2 = rand() % 2 + 1;
                     yC2 = rand() % 2 + 1;
 
@@ -146,6 +147,7 @@ int main()
                 system("cls");
                 printf("\n--------------");
                 board();
+                sleep(1);
                 xC2 = rand() % 2 + 1;
                 yC2 = rand() % 2 + 1;
 
