@@ -55,8 +55,8 @@ int main()
 
                 if (array[yP1 - 1][xP1 - 1] != ' ')
                 {
-                    printf("\nACHTUNG!\n");
-                    printf("!!!Dieses Feld ist bereits benutzt!!!");
+                    printf("\n\n");
+                    printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                 }
                 else
                 {
@@ -103,8 +103,8 @@ int main()
 
                     if (array[yP2 - 1][xP2 - 1] != ' ')
                     {
-                        printf("\nACHTUNG!\n");
-                        printf("!!!Dieses Feld ist bereits benutzt!!!");
+                        printf("\n\n");
+                        printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                     }
                     else
                     {
@@ -154,8 +154,8 @@ int main()
 
                 if (array[yP2 - 1][xP2 - 1] != ' ')
                 {
-                    printf("\nACHTUNG!\n");
-                    printf("!!!Dieses Feld ist bereits benutzt!!!");
+                    printf("\n\n");
+                    printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                 }
                 else
                 {
@@ -202,8 +202,8 @@ int main()
 
                     if (array[yP1 - 1][xP1 - 1] != ' ')
                     {
-                        printf("\nACHTUNG!\n");
-                        printf("!!!Dieses Feld ist bereits benutzt!!!");
+                        printf("\n\n");
+                        printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                     }
                     else
                     {
