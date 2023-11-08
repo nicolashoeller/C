@@ -32,68 +32,125 @@ int main()
     int xP1 = 0;
     int yC2 = 0;
     int win = 0;
-    int winReturn = 0;
-    int moveCount = 0;
+    int replaygame = 1;
 
-    system("clear");
-    printf("\nWilkommen zu Tik Tak Toe!\n");
-    printf("------------------------\n");
-    printf("Soll der Spieler (1) oder der Computer (2) beginnen\n");
-    printf("----> ");
-    scanf("%d", &spielerAuswahl);
-
-    if (spielerAuswahl == 1)
+    while (replaygame)
     {
-        while (!win)
-        {
-            while (!frei)
-            {
-                system("clear");
-                printf("\n--------------");
-                board();
-                printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
-                printf("X-Koordinate: ");
-                scanf("%d", &yP1);
-                printf("Y-Koordinate: ");
-                scanf("%d", &xP1);
-                system("clear");
+        system("clear");
+        printf("\nWilkommen zu Tik Tak Toe!\n");
+        printf("------------------------\n");
+        printf("Soll der Spieler (1) oder der Computer (2) beginnen\n");
+        printf("----> ");
+        scanf("%d", &spielerAuswahl);
 
-                if (array[xP1 - 1][yP1 - 1] != ' ')
+        if (spielerAuswahl == 1)
+        {
+            while (!win)
+            {
+                while (!frei)
                 {
-                    printf("\n\n");
-                    printf("!!!Diese Eingabe ist nicht erlaubt!!!");
+                    system("clear");
+                    printf("\n--------------");
+                    board();
+                    printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
+                    printf("X-Koordinate: ");
+                    scanf("%d", &yP1);
+                    printf("Y-Koordinate: ");
+                    scanf("%d", &xP1);
+                    system("clear");
+
+                    if (array[xP1 - 1][yP1 - 1] != ' ')
+                    {
+                        printf("\n\n");
+                        printf("!!!Diese Eingabe ist nicht erlaubt!!!");
+                    }
+                    else
+                    {
+                        array[xP1 - 1][yP1 - 1] = 'X';
+                        frei = 1;
+                    }
+                }
+                if (winCheckP1())
+                {
+                    system("clear");
+                    board();
+                    printf("-------------------------");
+                    printf("\n!!!Der Spieler hat gewonnen!!!\n");
+                    printf("-------------------------\n");
+                    win = 1;
+                }
+
+                else if (drawCheck())
+                {
+                    system("clear");
+                    board();
+                    printf("-------------------------");
+                    printf("\n!!!UNENTSCHIEDEN!!!\n");
+                    printf("-------------------------\n");
+                    win = 1;
                 }
                 else
                 {
-                    array[xP1 - 1][yP1 - 1] = 'X';
-                    frei = 1;
+                    frei = 0;
+                }
+                // Computer
+                if (!win)
+                {
+                    while (!frei)
+                    {
+                        system("clear");
+                        printf("\n--------------");
+                        board();
+                        sleep(1);
+
+                        if (minimax())
+                        {
+                            frei = 1;
+                        }
+                        else
+                        {
+                            xC2 = rand() % 3;
+                            yC2 = rand() % 3;
+
+                            if (array[yC2][xC2] != ' ')
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                array[yC2][xC2] = 'O';
+                                frei = 1;
+                            }
+                        }
+                    }
+                    if (winCheckP2())
+                    {
+                        system("clear");
+                        board();
+                        printf("-------------------------");
+                        printf("\n!!!Der Computer hat gewonnen!!!\n");
+                        printf("-------------------------\n");
+                        win = 1;
+                    }
+                    else if (drawCheck())
+                    {
+                        system("clear");
+                        board();
+                        printf("-------------------------");
+                        printf("\n!!!UNENTSCHIEDEN!!!\n");
+                        printf("-------------------------\n");
+                        win = 1;
+                    }
+                    else
+                    {
+                        frei = 0;
+                    }
                 }
             }
-            if (winCheckP1())
-            {
-                system("clear");
-                board();
-                printf("-------------------------");
-                printf("\n!!!Der Spieler hat gewonnen!!!\n");
-                printf("-------------------------\n");
-                win = 1;
-            }
-
-            else if (drawCheck())
-            {
-                system("clear");
-                board();
-                printf("-------------------------");
-                printf("\n!!!UNENTSCHIEDEN!!!\n");
-                printf("-------------------------\n");
-                win = 1;
-            }
-            else
-            {
-                frei = 0;
-            }
-            // Computer
-            if (!win)
+        }
+        else if (spielerAuswahl == 2)
+        {
+            while (!win)
             {
                 while (!frei)
                 {
@@ -131,6 +188,7 @@ int main()
                     printf("-------------------------\n");
                     win = 1;
                 }
+
                 else if (drawCheck())
                 {
                     system("clear");
@@ -144,117 +202,87 @@ int main()
                 {
                     frei = 0;
                 }
+                // Spieler 1
+                if (!win)
+                {
+                    while (!frei)
+                    {
+                        system("clear");
+                        printf("\n--------------");
+                        board();
+                        printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
+                        printf("X-Koordinate: ");
+                        scanf("%d", &yP1);
+                        printf("Y-Koordinate: ");
+                        scanf("%d", &xP1);
+
+                        if (array[xP1 - 1][yP1 - 1] != ' ')
+                        {
+                            printf("\n\n");
+                            printf("!!!Diese Eingabe ist nicht erlaubt!!!");
+                        }
+                        else
+                        {
+                            array[xP1 - 1][yP1 - 1] = 'X';
+                            frei = 1;
+                        }
+                    }
+                    if (winCheckP1())
+                    {
+                        system("clear");
+                        board();
+                        printf("-------------------------");
+                        printf("\n!!!Der Spieler hat gewonnen!!!\n");
+                        printf("-------------------------\n");
+                        win = 1;
+                    }
+                    else if (drawCheck())
+                    {
+                        system("clear");
+                        board();
+                        printf("-------------------------");
+                        printf("\n!!!UNENTSCHIEDEN!!!\n");
+                        printf("-------------------------\n");
+                        win = 1;
+                    }
+                    else
+                    {
+                        frei = 0;
+                    }
+                }
             }
         }
-    }
-    else if (spielerAuswahl == 2)
-    {
-        while (!win)
+
+        else
         {
-            while (!frei)
-            {
-                system("clear");
-                printf("\n--------------");
-                board();
-                sleep(1);
-                
-                if (minimax())
-                {
-                    frei = 1;
-                }
-                else
-                {
-                    xC2 = rand() % 3;
-                    yC2 = rand() % 3;
-
-                    if (array[yC2][xC2] != ' ')
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        array[yC2][xC2] = 'O';
-                        frei = 1;
-                    }
-                }
-            }
-            if (winCheckP2())
-            {
-                system("clear");
-                board();
-                printf("-------------------------");
-                printf("\n!!!Der Computer hat gewonnen!!!\n");
-                printf("-------------------------\n");
-                win = 1;
-            }
-
-            else if (drawCheck())
-            {
-                system("clear");
-                board();
-                printf("-------------------------");
-                printf("\n!!!UNENTSCHIEDEN!!!\n");
-                printf("-------------------------\n");
-                win = 1;
-            }
-            else
-            {
-                frei = 0;
-            }
-            // Spieler 1
-            if (!win)
-            {
-                while (!frei)
-                {
-                    system("clear");
-                    printf("\n--------------");
-                    board();
-                    printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
-                    printf("X-Koordinate: ");
-                    scanf("%d", &yP1);
-                    printf("Y-Koordinate: ");
-                    scanf("%d", &xP1);
-
-                    if (array[xP1 - 1][yP1 - 1] != ' ')
-                    {
-                        printf("\n\n");
-                        printf("!!!Diese Eingabe ist nicht erlaubt!!!");
-                    }
-                    else
-                    {
-                        array[xP1 - 1][yP1 - 1] = 'X';
-                        frei = 1;
-                    }
-                }
-                if (winCheckP1())
-                {
-                    system("clear");
-                    board();
-                    printf("-------------------------");
-                    printf("\n!!!Der Spieler hat gewonnen!!!\n");
-                    printf("-------------------------\n");
-                    win = 1;
-                }
-                else if (drawCheck())
-                {
-                    system("clear");
-                    board();
-                    printf("-------------------------");
-                    printf("\n!!!UNENTSCHIEDEN!!!\n");
-                    printf("-------------------------\n");
-                    win = 1;
-                }
-                else
-                {
-                    frei = 0;
-                }
-            }
+            printf("Gib Spieler 1 oder 2 an");
         }
-    }
-
-    else
-    {
-        printf("Gib Spieler 1 oder 2 an");
+        printf("Noch einmal spielen? 1 = Ja | 0 = Nein\n");
+        printf("----> ");
+        scanf("%d", &replaygame);
+        if (replaygame == 1)
+        {
+            spielerAuswahl = 0;
+            frei = 0;
+            yP1 = 0;
+            xC2 = 0;
+            xP1 = 0;
+            yC2 = 0;
+            win = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    array[j][i] = ' ';
+                }
+                
+            }
+            
+        }
+        else
+        {
+            replaygame = 0;
+        }
     }
 
     return 0;
@@ -349,7 +377,7 @@ int drawCheck()
     return 1;
 }
 
-int minimax() // Züge vorhersagen
+int minimax()
 {
     for (int i = 0; i < 3; i++)
     {
@@ -418,7 +446,7 @@ int minimax() // Züge vorhersagen
         array[0][2] = 'O';
         return 1; // Diagonale von links unten nach rechts oben gefunden
     }
-    //Win von Player blockieren
+    // Win von Player blockieren
     for (int i = 0; i < 3; i++)
     {
         // Horizontale Spalten
