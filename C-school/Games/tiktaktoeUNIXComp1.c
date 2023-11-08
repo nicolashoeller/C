@@ -102,7 +102,6 @@ int main()
                     board();
                     sleep(1);
 
-                    minimax();
                     if (minimax())
                     {
                         frei = 1;
@@ -111,7 +110,7 @@ int main()
                     {
                         xC2 = rand() % 3;
                         yC2 = rand() % 3;
-                        
+
                         if (array[yC2][xC2] != ' ')
                         {
                             continue;
@@ -158,17 +157,25 @@ int main()
                 printf("\n--------------");
                 board();
                 sleep(1);
-                xC2 = rand() % 2 + 1;
-                yC2 = rand() % 2 + 1;
-
-                if (array[yC2][xC2] != ' ')
+                
+                if (minimax())
                 {
-                    continue;
+                    frei = 1;
                 }
                 else
                 {
-                    array[yC2][xC2] = 'O';
-                    frei = 1;
+                    xC2 = rand() % 3;
+                    yC2 = rand() % 3;
+
+                    if (array[yC2][xC2] != ' ')
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        array[yC2][xC2] = 'O';
+                        frei = 1;
+                    }
                 }
             }
             if (winCheckP2())
@@ -412,5 +419,5 @@ int minimax() // Züge vorhersagen
         return 1; // Diagonale von links unten nach rechts oben gefunden
     }
 
-    return 0; // Kein Gewinner gefunden
+    return 0;
 }
