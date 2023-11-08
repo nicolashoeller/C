@@ -1,9 +1,8 @@
 /*
+File: taktaktoeWindCompMed.c
+Date: 08.11.2023
 Autor: Nicolas Höller
-File: tiktaktoeUNIXCompMed.c
-Date: 07.11.2023
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -35,7 +34,7 @@ int main()
     int winReturn = 0;
     int moveCount = 0;
 
-    system("clear");
+    system("cls");
     printf("\nWilkommen zu Tik Tak Toe!\n");
     printf("------------------------\n");
     printf("Soll der Spieler (1) oder der Computer (2) beginnen\n");
@@ -48,7 +47,7 @@ int main()
         {
             while (!frei)
             {
-                system("clear");
+                system("cls");
                 printf("\n--------------");
                 board();
                 printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
@@ -56,7 +55,7 @@ int main()
                 scanf("%d", &yP1);
                 printf("Y-Koordinate: ");
                 scanf("%d", &xP1);
-                system("clear");
+                system("cls");
 
                 if (array[xP1 - 1][yP1 - 1] != ' ')
                 {
@@ -71,7 +70,7 @@ int main()
             }
             if (winCheckP1())
             {
-                system("clear");
+                system("cls");
                 board();
                 printf("-------------------------");
                 printf("\n!!!Der Spieler hat gewonnen!!!\n");
@@ -81,7 +80,7 @@ int main()
 
             else if (drawCheck())
             {
-                system("clear");
+                system("cls");
                 board();
                 printf("-------------------------");
                 printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -97,7 +96,7 @@ int main()
             {
                 while (!frei)
                 {
-                    system("clear");
+                    system("cls");
                     printf("\n--------------");
                     board();
                     sleep(1);
@@ -124,7 +123,7 @@ int main()
                 }
                 if (winCheckP2())
                 {
-                    system("clear");
+                    system("cls");
                     board();
                     printf("-------------------------");
                     printf("\n!!!Der Computer hat gewonnen!!!\n");
@@ -133,7 +132,7 @@ int main()
                 }
                 else if (drawCheck())
                 {
-                    system("clear");
+                    system("cls");
                     board();
                     printf("-------------------------");
                     printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -153,7 +152,7 @@ int main()
         {
             while (!frei)
             {
-                system("clear");
+                system("cls");
                 printf("\n--------------");
                 board();
                 sleep(1);
@@ -180,7 +179,7 @@ int main()
             }
             if (winCheckP2())
             {
-                system("clear");
+                system("cls");
                 board();
                 printf("-------------------------");
                 printf("\n!!!Der Computer hat gewonnen!!!\n");
@@ -190,7 +189,7 @@ int main()
 
             else if (drawCheck())
             {
-                system("clear");
+                system("cls");
                 board();
                 printf("-------------------------");
                 printf("\n!!!UNENTSCHIEDEN!!!\n");
@@ -206,7 +205,7 @@ int main()
             {
                 while (!frei)
                 {
-                    system("clear");
+                    system("cls");
                     printf("\n--------------");
                     board();
                     printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
@@ -228,7 +227,7 @@ int main()
                 }
                 if (winCheckP1())
                 {
-                    system("clear");
+                    system("cls");
                     board();
                     printf("-------------------------");
                     printf("\n!!!Der Spieler hat gewonnen!!!\n");
@@ -237,7 +236,7 @@ int main()
                 }
                 else if (drawCheck())
                 {
-                    system("clear");
+                    system("cls");
                     board();
                     printf("-------------------------");
                     printf("\n!!!UNENTSCHIEDEN!!!\n");

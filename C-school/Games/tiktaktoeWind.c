@@ -24,10 +24,10 @@ int main()
 {
     int spielerAuswahl = 0;
     int frei = 0;
-    int xP1 = 0;
-    int xP2 = 0;
     int yP1 = 0;
     int yP2 = 0;
+    int xP1 = 0;
+    int xP2 = 0;
     int win = 0;
     int winReturn = 0;
 
@@ -50,19 +50,19 @@ int main()
                 board();
                 printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
                 printf("X-Koordinate: ");
-                scanf("%d", &xP1);
-                printf("Y-Koordinate: ");
                 scanf("%d", &yP1);
+                printf("Y-Koordinate: ");
+                scanf("%d", &xP1);
                 system("cls");
 
-                if (array[yP1 - 1][xP1 - 1] != ' ')
+                if (array[xP1 - 1][yP1 - 1] != ' ')
                 {
                     printf("\n\n");
                     printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                 }
                 else
                 {
-                    array[yP1 - 1][xP1 - 1] = 'X';
+                    array[xP1 - 1][yP1 - 1] = 'X';
                     frei = 1;
                 }
             }
@@ -99,18 +99,18 @@ int main()
                     board();
                     printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
                     printf("X-Koordinate: ");
-                    scanf("%d", &xP2);
-                    printf("Y-Koordinate: ");
                     scanf("%d", &yP2);
+                    printf("Y-Koordinate: ");
+                    scanf("%d", &xP2);
 
-                    if (array[yP2 - 1][xP2 - 1] != ' ')
+                    if (array[xP2 - 1][yP2 - 1] != ' ')
                     {
                         printf("\n\n");
                         printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                     }
                     else
                     {
-                        array[yP2 - 1][xP2 - 1] = 'O';
+                        array[xP2 - 1][yP2 - 1] = 'O';
                         frei = 1;
                     }
                 }
@@ -150,18 +150,18 @@ int main()
                 board();
                 printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
                 printf("X-Koordinate: ");
-                scanf("%d", &xP2);
-                printf("Y-Koordinate: ");
                 scanf("%d", &yP2);
+                printf("Y-Koordinate: ");
+                scanf("%d", &xP2);
 
-                if (array[yP2 - 1][xP2 - 1] != ' ')
+                if (array[xP2 - 1][yP2 - 1] != ' ')
                 {
                     printf("\n\n");
                     printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                 }
                 else
                 {
-                    array[yP2 - 1][xP2 - 1] = 'O';
+                    array[xP2 - 1][yP2 - 1] = 'O';
                     frei = 1;
                 }
             }
@@ -198,18 +198,18 @@ int main()
                     board();
                     printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
                     printf("X-Koordinate: ");
-                    scanf("%d", &xP1);
-                    printf("Y-Koordinate: ");
                     scanf("%d", &yP1);
+                    printf("Y-Koordinate: ");
+                    scanf("%d", &xP1);
 
-                    if (array[yP1 - 1][xP1 - 1] != ' ')
+                    if (array[xP1 - 1][yP1 - 1] != ' ')
                     {
                         printf("\n\n");
                         printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                     }
                     else
                     {
-                        array[yP1 - 1][xP1 - 1] = 'X';
+                        array[xP1 - 1][yP1 - 1] = 'X';
                         frei = 1;
                     }
                 }
