@@ -1,13 +1,11 @@
 /*
-File: tiktaktoeUNIXComp1.c
-Date: 07.11.2023
 Autor: Nicolas Höller
+File: tiktaktoeUNIX.c
+Date: 26.10.2023
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
 
 char array[3][3] = {
     {' ', ' ', ' '},
@@ -20,38 +18,35 @@ void board();
 int winCheckP1();
 int winCheckP2();
 int drawCheck();
-int minimax();
 
 int main()
 {
-    srand(time(NULL));
     int spielerAuswahl = 0;
     int frei = 0;
     int xP1 = 0;
-    int xC2 = 0;
+    int xP2 = 0;
     int yP1 = 0;
-    int yC2 = 0;
+    int yP2 = 0;
     int win = 0;
     int winReturn = 0;
-    int moveCount = 0;
 
     system("clear");
     printf("\nWilkommen zu Tik Tak Toe!\n");
     printf("------------------------\n");
-    printf("Soll der Spieler (1) oder der Computer (2) beginnen\n");
+    printf("Welcher Spieler soll beginnen? (1 | 2)\n");
     printf("----> ");
     scanf("%d", &spielerAuswahl);
 
     if (spielerAuswahl == 1)
     {
-        while (!win)
+        while (win == 0)
         {
-            while (!frei)
+            while (frei == 0)
             {
                 system("clear");
                 printf("\n--------------");
                 board();
-                printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
+                printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
                 printf("X-Koordinate: ");
                 scanf("%d", &xP1);
                 printf("Y-Koordinate: ");
@@ -69,17 +64,17 @@ int main()
                     frei = 1;
                 }
             }
-            if (winCheckP1())
+            if (winCheckP1() == 1)
             {
                 system("clear");
                 board();
                 printf("-------------------------");
-                printf("\n!!!Der Spieler hat gewonnen!!!\n");
+                printf("\n!!!Spieler 1 hat gewonnen!!!\n");
                 printf("-------------------------\n");
                 win = 1;
             }
 
-            else if (drawCheck())
+            else if (drawCheck() == 1)
             {
                 system("clear");
                 board();
@@ -92,47 +87,41 @@ int main()
             {
                 frei = 0;
             }
-            // Computer
-            if (!win)
+            // Spieler 2
+            if (win == 0)
             {
-                while (!frei)
+                while (frei == 0)
                 {
                     system("clear");
                     printf("\n--------------");
                     board();
-                    sleep(1);
+                    printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
+                    printf("X-Koordinate: ");
+                    scanf("%d", &xP2);
+                    printf("Y-Koordinate: ");
+                    scanf("%d", &yP2);
 
-                    minimax();
-                    if (minimax())
+                    if (array[yP2 - 1][xP2 - 1] != ' ')
                     {
-                        frei = 1;
+                        printf("\n\n");
+                        printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                     }
                     else
                     {
-                        xC2 = rand() % 3;
-                        yC2 = rand() % 3;
-                        
-                        if (array[yC2][xC2] != ' ')
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            array[yC2][xC2] = 'O';
-                            frei = 1;
-                        }
+                        array[yP2 - 1][xP2 - 1] = 'O';
+                        frei = 1;
                     }
                 }
-                if (winCheckP2())
+                if (winCheckP2() == 1)
                 {
                     system("clear");
                     board();
                     printf("-------------------------");
-                    printf("\n!!!Der Computer hat gewonnen!!!\n");
+                    printf("\n!!!Spieler 2 hat gewonnen!!!\n");
                     printf("-------------------------\n");
                     win = 1;
                 }
-                else if (drawCheck())
+                else if (drawCheck() == 1)
                 {
                     system("clear");
                     board();
@@ -150,38 +139,41 @@ int main()
     }
     else if (spielerAuswahl == 2)
     {
-        while (!win)
+        while (win == 0)
         {
-            while (!frei)
+            while (frei == 0)
             {
                 system("clear");
                 printf("\n--------------");
                 board();
-                sleep(1);
-                xC2 = rand() % 2 + 1;
-                yC2 = rand() % 2 + 1;
+                printf("\nSpieler 2,\nin welchen Feld willst du deine O schreiben?\n");
+                printf("X-Koordinate: ");
+                scanf("%d", &xP2);
+                printf("Y-Koordinate: ");
+                scanf("%d", &yP2);
 
-                if (array[yC2][xC2] != ' ')
+                if (array[yP2 - 1][xP2 - 1] != ' ')
                 {
-                    continue;
+                    printf("\n\n");
+                    printf("!!!Diese Eingabe ist nicht erlaubt!!!");
                 }
                 else
                 {
-                    array[yC2][xC2] = 'O';
+                    array[yP2 - 1][xP2 - 1] = 'O';
                     frei = 1;
                 }
             }
-            if (winCheckP2())
+            if (winCheckP2() == 1)
             {
                 system("clear");
                 board();
                 printf("-------------------------");
-                printf("\n!!!Der Computer hat gewonnen!!!\n");
+                printf("\n!!!Spieler 2 hat gewonnen!!!\n");
                 printf("-------------------------\n");
                 win = 1;
             }
 
-            else if (drawCheck())
+            else if (drawCheck() == 1)
             {
                 system("clear");
                 board();
@@ -194,15 +186,15 @@ int main()
             {
                 frei = 0;
             }
-            // Spieler 1
-            if (!win)
+            // Spieler 2
+            if (win == 0)
             {
-                while (!frei)
+                while (frei == 0)
                 {
                     system("clear");
                     printf("\n--------------");
                     board();
-                    printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
+                    printf("\nSpieler 1,\nin welchen Feld willst du deine X schreiben?\n");
                     printf("X-Koordinate: ");
                     scanf("%d", &xP1);
                     printf("Y-Koordinate: ");
@@ -219,16 +211,16 @@ int main()
                         frei = 1;
                     }
                 }
-                if (winCheckP1())
+                if (winCheckP1() == 1)
                 {
                     system("clear");
                     board();
                     printf("-------------------------");
-                    printf("\n!!!Der Spieler hat gewonnen!!!\n");
+                    printf("\n!!!Spieler 1 hat gewonnen!!!\n");
                     printf("-------------------------\n");
                     win = 1;
                 }
-                else if (drawCheck())
+                else if (drawCheck() == 1)
                 {
                     system("clear");
                     board();
@@ -328,89 +320,13 @@ int winCheckP2()
 
 int drawCheck()
 {
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            if (array[i][j] == ' ')
-            {
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (array[i][j] == ' ') {
                 return 0;
             }
         }
     }
-
     return 1;
-}
-
-int minimax() // Züge vorhersagen
-{
-    for (int i = 0; i < 3; i++)
-    {
-        // Horizontale Spalten
-        if (array[i][0] == ' ' && array[i][1] == 'O' && array[i][2] == 'O')
-        {
-            array[i][0] = 'O';
-            return 1;
-        }
-        if (array[i][0] == 'O' && array[i][1] == ' ' && array[i][2] == 'O')
-        {
-            array[i][1] = 'O';
-            return 1;
-        }
-        if (array[i][0] == 'O' && array[i][1] == 'O' && array[i][2] == ' ')
-        {
-            array[i][2] = 'O';
-            return 1;
-        }
-        // Vertikale Spalten
-        if (array[0][i] == ' ' && array[1][i] == 'O' && array[2][i] == 'O')
-        {
-            array[0][i] = 'O';
-            return 1; // Vertikale Spalte gefunden
-        }
-        if (array[0][i] == 'O' && array[1][i] == ' ' && array[2][i] == 'O')
-        {
-            array[1][i] = 'O';
-            return 1; // Vertikale Spalte gefunden
-        }
-        if (array[0][i] == 'O' && array[1][i] == 'O' && array[2][i] == ' ')
-        {
-            array[2][i] = 'O';
-            return 1; // Vertikale Spalte gefunden
-        }
-    }
-    // Diagonale von links oben nach rechts unten gefunden
-    if (array[0][0] == ' ' && array[1][1] == 'O' && array[2][2] == 'O')
-    {
-        array[0][0] = 'O';
-        return 1;
-    }
-    if (array[0][0] == 'O' && array[1][1] == ' ' && array[2][2] == 'O')
-    {
-        array[1][1] = 'O';
-        return 1;
-    }
-    if (array[0][0] == 'O' && array[1][1] == 'O' && array[2][2] == ' ')
-    {
-        array[2][2] = 'O';
-        return 1;
-    }
-    // Diagonale von links unten nach rechts oben gefunden
-    if (array[2][0] == ' ' && array[1][1] == 'O' && array[0][2] == 'O')
-    {
-        array[2][0] = 'O';
-        return 1;
-    }
-    if (array[2][0] == 'O' && array[1][1] == ' ' && array[0][2] == 'O')
-    {
-        array[1][1] = 'O';
-        return 1; // Diagonale von links unten nach rechts oben gefunden
-    }
-    if (array[2][0] == 'O' && array[1][1] == 'O' && array[0][2] == ' ')
-    {
-        array[0][2] = 'O';
-        return 1; // Diagonale von links unten nach rechts oben gefunden
-    }
-
-    return 0; // Kein Gewinner gefunden
 }
