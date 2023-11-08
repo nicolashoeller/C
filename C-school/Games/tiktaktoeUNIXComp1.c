@@ -44,9 +44,9 @@ int main()
 
     if (spielerAuswahl == 1)
     {
-        while (win == 0)
+        while (!win)
         {
-            while (frei == 0)
+            while (!frei)
             {
                 system("clear");
                 printf("\n--------------");
@@ -93,9 +93,9 @@ int main()
                 frei = 0;
             }
             // Computer
-            if (win == 0)
+            if (!win)
             {
-                while (frei == 0)
+                while (!frei)
                 {
                     system("clear");
                     printf("\n--------------");
@@ -142,9 +142,9 @@ int main()
     }
     else if (spielerAuswahl == 2)
     {
-        while (win == 0)
+        while (!win)
         {
-            while (frei == 0)
+            while (!frei)
             {
                 system("clear");
                 printf("\n--------------");
@@ -187,9 +187,9 @@ int main()
                 frei = 0;
             }
             // Spieler 1
-            if (win == 0)
+            if (!win)
             {
-                while (frei == 0)
+                while (!frei)
                 {
                     system("clear");
                     printf("\n--------------");
