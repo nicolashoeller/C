@@ -20,6 +20,7 @@ void board();
 int winCheckP1();
 int winCheckP2();
 int drawCheck();
+int minimax();
 
 int main()
 {
@@ -319,12 +320,32 @@ int winCheckP2()
 
 int drawCheck()
 {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if (array[i][j] == ' ') {
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (array[i][j] == ' ')
+            {
                 return 0;
             }
         }
     }
+
     return 1;
+}
+
+int minimax() //Züge vorhersagen
+{
+    int freeSpaces[50][50] = {0};
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (array[i][j] = ' ')
+            {
+                freeSpaces[i][j] = array[i][j];
+            }
+        }
+    }
 }
