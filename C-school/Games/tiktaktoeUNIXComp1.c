@@ -418,6 +418,74 @@ int minimax() // Züge vorhersagen
         array[0][2] = 'O';
         return 1; // Diagonale von links unten nach rechts oben gefunden
     }
+    //Win von Player blockieren
+    for (int i = 0; i < 3; i++)
+    {
+        // Horizontale Spalten
+        if (array[i][0] == ' ' && array[i][1] == 'X' && array[i][2] == 'X')
+        {
+            array[i][0] = 'O';
+            return 1;
+        }
+        if (array[i][0] == 'X' && array[i][1] == ' ' && array[i][2] == 'X')
+        {
+            array[i][1] = 'O';
+            return 1;
+        }
+        if (array[i][0] == 'X' && array[i][1] == 'X' && array[i][2] == ' ')
+        {
+            array[i][2] = 'O';
+            return 1;
+        }
+        // Vertikale Spalten
+        if (array[0][i] == ' ' && array[1][i] == 'X' && array[2][i] == 'X')
+        {
+            array[0][i] = 'O';
+            return 1; // Vertikale Spalte gefunden
+        }
+        if (array[0][i] == 'X' && array[1][i] == ' ' && array[2][i] == 'X')
+        {
+            array[1][i] = 'O';
+            return 1; // Vertikale Spalte gefunden
+        }
+        if (array[0][i] == 'X' && array[1][i] == 'X' && array[2][i] == ' ')
+        {
+            array[2][i] = 'O';
+            return 1; // Vertikale Spalte gefunden
+        }
+    }
+    // Diagonale von links oben nach rechts unten gefunden
+    if (array[0][0] == ' ' && array[1][1] == 'X' && array[2][2] == 'X')
+    {
+        array[0][0] = 'O';
+        return 1;
+    }
+    if (array[0][0] == 'X' && array[1][1] == ' ' && array[2][2] == 'X')
+    {
+        array[1][1] = 'O';
+        return 1;
+    }
+    if (array[0][0] == 'X' && array[1][1] == 'X' && array[2][2] == ' ')
+    {
+        array[2][2] = 'O';
+        return 1;
+    }
+    // Diagonale von links unten nach rechts oben gefunden
+    if (array[2][0] == ' ' && array[1][1] == 'X' && array[0][2] == 'X')
+    {
+        array[2][0] = 'O';
+        return 1;
+    }
+    if (array[2][0] == 'X' && array[1][1] == ' ' && array[0][2] == 'X')
+    {
+        array[1][1] = 'O';
+        return 1; // Diagonale von links unten nach rechts oben gefunden
+    }
+    if (array[2][0] == 'X' && array[1][1] == 'X' && array[0][2] == ' ')
+    {
+        array[0][2] = 'O';
+        return 1; // Diagonale von links unten nach rechts oben gefunden
+    }
 
     return 0;
 }
