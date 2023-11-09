@@ -52,7 +52,7 @@ int main()
                     system("clear");
                     printf("\n--------------");
                     board();
-                    printf("\nSpieler,\nin welchen Feld willst du deine X schreiben?\n");
+                    printf("\nSpieler,\nin welchen Feld willst du dein X schreiben?\n");
                     printf("X-Koordinate: ");
                     scanf("%d", &yP1);
                     printf("Y-Koordinate: ");
