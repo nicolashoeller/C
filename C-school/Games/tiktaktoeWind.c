@@ -240,33 +240,36 @@ int main()
             }
         }
 
-        else
+        else if (spielerAuswahl != 1 && spielerAuswahl != 2)
         {
             printf("Gib Spieler 1 oder 2 an");
         }
-        printf("Noch einmal spielen? 1 = Ja | 0 = Nein\n");
-        printf("----> ");
-        scanf("%d", &replaygame);
-        if (replaygame == 1)
-        {
-            spielerAuswahl = 0;
-            frei = 0;
-            yP1 = 0;
-            xP2 = 0;
-            xP1 = 0;
-            yP2 = 0;
-            win = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    array[j][i] = ' ';
-                }
-            }
-        }
         else
         {
-            replaygame = 0;
+            printf("Noch einmal spielen? 1 = Ja | 0 = Nein\n");
+            printf("----> ");
+            scanf("%d", &replaygame);
+            if (replaygame == 1)
+            {
+                spielerAuswahl = 0;
+                frei = 0;
+                yP1 = 0;
+                xP2 = 0;
+                xP1 = 0;
+                yP2 = 0;
+                win = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        array[j][i] = ' ';
+                    }
+                }
+            }
+            else
+            {
+                replaygame = 0;
+            }
         }
     }
 
