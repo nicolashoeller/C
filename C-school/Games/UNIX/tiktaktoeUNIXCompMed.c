@@ -79,7 +79,6 @@ int main()
                     printf("-------------------------\n");
                     win = 1;
                 }
-
                 else if (drawCheck())
                 {
                     system("clear");
