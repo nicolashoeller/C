@@ -16,10 +16,10 @@ int main()
     int x = 0;
     int y = 0;
     int forCountZ = 0;
-    char spieler = 'X';
-    char input = 0;
     int dead = 0;
     int score = 0;
+    char spieler = 'X';
+    char input = 0;
 
     printf("Gebe die Größe des Spielfels ein\n");
     printf("Spalten: ");
@@ -46,14 +46,11 @@ int main()
     {
         spielfeld[rand()%gr1][rand()%gr2] = 'Z';
     }
-
     for (int i = 0; i < gr1*1.5; i++)
     {
         spielfeld[rand()%gr1][rand()%gr2] = 'O';
     }
-    
     spielfeld[x][y] = spieler;
-
 
     //Feld ausgeben
     for (int i = 0; i < gr1; i++)
@@ -78,13 +75,17 @@ int main()
             }
             printf("|\n");
         }
-        
 
         if (input == 'w')
         {
             spielfeld[x][y] = '-';
+            if (x == 0)
+            {
+                x = gr1;
+            }
             x--;
-            if(spielfeld[x][y] == 'Z'){
+            if(spielfeld[x][y] == 'Z')
+            {
                 printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
                 dead = 1;
             }
@@ -96,8 +97,13 @@ int main()
         else if (input == 'a')
         {
             spielfeld[x][y] = '-';
+            if (y == 0)
+            {
+                x++;
+            }
             y--;
-            if(spielfeld[x][y] == 'Z'){
+            if(spielfeld[x][y] == 'Z')
+            {
                 printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
                 dead = 1;
             }
@@ -106,11 +112,16 @@ int main()
                 spielfeld[x][y] = 'X';
             }  
         }
-        else if (input == 's')
+        else if (input == 's') //Funkt net
         {
             spielfeld[x][y] = '-';
+            if (y == gr1)
+            {
+                x = 0;
+            }
             x++;
-            if(spielfeld[x][y] == 'Z'){
+            if(spielfeld[x][y] == 'Z')
+            {
                 printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
                 dead = 1;
             }
@@ -119,11 +130,16 @@ int main()
                 spielfeld[x][y] = 'X';
             }  
         }
-        else if (input == 'd')
+        else if (input == 'd') //Funkt net
         {
             spielfeld[x][y] = '-';
+            if (x == gr1)
+            {
+                x--;
+            }
             y++;
-            if(spielfeld[x][y] == 'Z'){
+            if(spielfeld[x][y] == 'Z')
+            {
                 printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
                 dead = 1;
             }
