@@ -19,6 +19,7 @@ int main()
     char spieler = 'X';
     char input = 0;
     int dead = 0;
+    int score = 0;
 
     printf("Gebe die Größe des Spielfels ein\n");
     printf("Spalten: ");
@@ -31,6 +32,7 @@ int main()
     x = gr1 / 2;
     y = gr2 / 2;
 
+    //Feld füllen
     for (int i = 0; i < gr1; i++)
     {
         for (int j = 0; j < gr2; j++)
@@ -39,26 +41,21 @@ int main()
         }
     }
 
-    if (x < 2 || y < 2){
-        forCountZ = 2;
-    }
-    else
-    {
-        forCountZ = 5;
-    }
-
-    for (int i = 0; i < forCountZ; i++)
+    //Feld mit Z und O füllen
+    for (int i = 0; i < gr1; i++)
     {
         spielfeld[rand()%gr1][rand()%gr2] = 'Z';
     }
 
-    for (int i = 0; i < forCountZ*1.5; i++)
+    for (int i = 0; i < gr1*1.5; i++)
     {
         spielfeld[rand()%gr1][rand()%gr2] = 'O';
     }
     
     spielfeld[x][y] = spieler;
 
+
+    //Feld ausgeben
     for (int i = 0; i < gr1; i++)
     {
         for (int j = 0; j < gr2; j++)
@@ -81,34 +78,70 @@ int main()
             }
             printf("|\n");
         }
+        
 
         if (input == 'w')
         {
             spielfeld[x][y] = '-';
             x--;
-            spielfeld[x][y] = 'X';
+            if(spielfeld[x][y] == 'Z'){
+                printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
+                dead = 1;
+            }
+            else
+            {
+                spielfeld[x][y] = 'X';
+            }           
         }
         else if (input == 'a')
         {
             spielfeld[x][y] = '-';
             y--;
-            spielfeld[x][y] = 'X';
+            if(spielfeld[x][y] == 'Z'){
+                printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
+                dead = 1;
+            }
+            else
+            {
+                spielfeld[x][y] = 'X';
+            }  
         }
         else if (input == 's')
         {
             spielfeld[x][y] = '-';
             x++;
-            spielfeld[x][y] = 'X';
+            if(spielfeld[x][y] == 'Z'){
+                printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
+                dead = 1;
+            }
+            else
+            {
+                spielfeld[x][y] = 'X';
+            }  
         }
         else if (input == 'd')
         {
             spielfeld[x][y] = '-';
             y++;
-            spielfeld[x][y] = 'X';
+            if(spielfeld[x][y] == 'Z'){
+                printf("\n-----------------------------\nDu hasch verloren klein Pisser du!");
+                dead = 1;
+            }
+            else
+            {
+                spielfeld[x][y] = 'X';
+            }  
         }
+        else if (input == 'x')
+        {
+            printf("\n-----------------------------\nDas Spiel wurde beendet!!");
+            dead = 1;
+        }
+        
         else
         {
             printf("Steuerung mit w, a, s, d");
         }
+        
     }
 }
