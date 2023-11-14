@@ -39,7 +39,7 @@ int main()
         }
     }
 
-    if (x < 5 || y < 5){
+    if (x < 2 || y < 2){
         forCountZ = 2;
     }
     else
@@ -57,10 +57,7 @@ int main()
         spielfeld[rand()%gr1][rand()%gr2] = 'O';
     }
     
-    
-    
-
-    spielfeld[gr1 / 2 - 1][gr2 / 2 - 1] = spieler;
+    spielfeld[x][y] = spieler;
 
     for (int i = 0; i < gr1; i++)
     {
