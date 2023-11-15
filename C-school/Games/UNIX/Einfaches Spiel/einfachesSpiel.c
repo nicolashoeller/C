@@ -6,6 +6,10 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <termios.h>
+#include <unistd.h>
+
+char getch();
 
 int main()
 {
@@ -30,7 +34,6 @@ int main()
     x = gr1 / 2;
     y = gr2 / 2;
 
-    // Feld füllen
     for (int i = 0; i < gr1; i++)
     {
         for (int j = 0; j < gr2; j++)
@@ -38,8 +41,6 @@ int main()
             spielfeld[i][j] = '-';
         }
     }
-
-    // Feld mit Z und O füllen
     for (int i = 0; i < 3; i++)
     {
         spielfeld[rand() % gr1][rand() % gr2] = 'Z';
@@ -63,9 +64,9 @@ int main()
         {
             spielfeld[rand() % gr1][rand() % gr2] = 'O';
         }
-        fflush(stdin);
-        input = getchar();
         system("clear");
+        fflush(stdin);
+        
         for (int i = 0; i < gr1; i++)
         {
             for (int j = 0; j < gr2; j++)
@@ -76,6 +77,8 @@ int main()
         }
         printf("\nScore: %d", score);
         printf("\nLeben: %d\n", leben);
+
+        input = getch();
 
         if (input == 'w')
         {
@@ -138,17 +141,36 @@ int main()
 
             spielfeld[x][y] = 'X';
         }
-
         else if (input == 'x')
         {
             printf("\n-----------------------------\nDas Spiel wurde beendet!!");
             leben = 0;
         }
-
         else
         {
             printf("Steuerung mit w, a, s, d");
         }
     }
     printf("\n-----------------------------\nDu hasch verloren klein Pisser!!");
+}
+
+char getch() {
+    char buf = 0;
+    struct termios old = {0};
+    fflush(stdout);
+    if (tcgetattr(0, &old) < 0)
+        perror("tcsetattr()");
+    old.c_lflag &= ~ICANON;
+    old.c_lflag &= ~ECHO;
+    old.c_cc[VMIN] = 1;
+    old.c_cc[VTIME] = 0;
+    if (tcsetattr(0, TCSANOW, &old) < 0)
+        perror("tcsetattr ICANON");
+    if (read(0, &buf, 1) < 0)
+        perror("read()");
+    old.c_lflag |= ICANON;
+    old.c_lflag |= ECHO;
+    if (tcsetattr(0, TCSADRAIN, &old) < 0)
+        perror("tcsetattr ~ICANON");
+    return buf;
 }
