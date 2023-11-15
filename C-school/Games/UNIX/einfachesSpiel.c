@@ -68,7 +68,6 @@ int main()
         {
             spielfeld[rand() % gr1][rand() % gr2] = 'O';
         }
-
         fflush(stdin);
         input = getchar();
         system("clear");
@@ -124,9 +123,9 @@ int main()
         else if (input == 's') // Funkt net
         {
             spielfeld[x][y] = '-';
-            if (y == gr1)
+            if (y >= gr1)
             {
-                x = 0;
+                y = 0;
             }
             x++;
             if (spielfeld[x][y] == 'Z')
@@ -143,9 +142,9 @@ int main()
         else if (input == 'd') // Funkt net
         {
             spielfeld[x][y] = '-';
-            if (x == gr1)
+            if (x >= gr1)
             {
-                x--;
+                x=0;
             }
             y++;
             if (spielfeld[x][y] == 'Z')
