@@ -11,14 +11,9 @@ int main()
 {
     srand(time(NULL));
 
-    int gr1 = 0;
-    int gr2 = 0;
-    int rdm1 = 0;
-    int rdm2 = 0;
-    int x = 0;
-    int y = 0;
-    int forCountZ = 0;
-    int dead = 0;
+    int gr1 = 0, gr2 = 0;
+    int rdm1 = 0, rdm2 = 0;
+    int x = 0, y = 0;
     int score = 0;
     int leben = 3;
     char spieler = 'X';
@@ -85,11 +80,7 @@ int main()
         if (input == 'w')
         {
             spielfeld[x][y] = '-';
-            if (x == 0)
-            {
-                x = gr1;
-            }
-            x--;
+            x = (x - 1 + gr1) % gr1;
             if (spielfeld[x][y] == 'Z')
             {
                 leben--;
@@ -104,11 +95,7 @@ int main()
         else if (input == 'a')
         {
             spielfeld[x][y] = '-';
-            if (y == 0)
-            {
-                x++;
-            }
-            y--;
+            y = (y - 1 + gr2) % gr2;
             if (spielfeld[x][y] == 'Z')
             {
                 leben--;
@@ -120,14 +107,10 @@ int main()
 
             spielfeld[x][y] = 'X';
         }
-        else if (input == 's') // Funkt net
+        else if (input == 's')
         {
             spielfeld[x][y] = '-';
-            if (y >= gr1)
-            {
-                y = 0;
-            }
-            x++;
+            x = (x + 1) % gr1;
             if (spielfeld[x][y] == 'Z')
             {
                 leben--;
@@ -139,14 +122,10 @@ int main()
 
             spielfeld[x][y] = 'X';
         }
-        else if (input == 'd') // Funkt net
+        else if (input == 'd')
         {
             spielfeld[x][y] = '-';
-            if (x >= gr1)
-            {
-                x = 0;
-            }
-            y++;
+            y = (y + 1) % gr2;
             if (spielfeld[x][y] == 'Z')
             {
 
@@ -163,7 +142,7 @@ int main()
         else if (input == 'x')
         {
             printf("\n-----------------------------\nDas Spiel wurde beendet!!");
-            dead = 3;
+            leben = 0;
         }
 
         else
