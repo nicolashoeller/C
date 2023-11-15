@@ -30,6 +30,12 @@ int main()
     printf("Zeilen: ");
     scanf("%d", &gr2);
 
+    if (gr1 <= 1 || gr2 <= 1)
+    {
+        printf("\nWas willst du Junge!");
+        return 0;
+    }
+
     char spielfeld[gr1][gr2];
 
     x = gr1 / 2;
@@ -157,7 +163,7 @@ int main()
             inputError = 0;
         }
     }
-    printf("\n-----------------------------\nDu hasch verloren klein Pisser!!");
+    printf("\n-----------------------------\nLeben: 0\nDu hasch verloren klein Pisser!!");
 }
 
 char getch()
