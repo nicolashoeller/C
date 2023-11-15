@@ -20,6 +20,7 @@ int main()
     int x = 0, y = 0;
     int score = 0;
     int leben = 3;
+    int inputError = 0;
     char spieler = 'X';
     char input = 0;
 
@@ -52,21 +53,25 @@ int main()
     spielfeld[x][y] = spieler;
     while (leben > 0)
     {
-        rdm1 = rand() % gr1;
-        rdm2 = rand() % gr1;
-        if (spielfeld[rdm1][rdm2] == '-')
+        if (inputError)
         {
-            spielfeld[rand() % gr1][rand() % gr2] = 'Z';
+            rdm1 = rand() % gr1;
+            rdm2 = rand() % gr1;
+            if (spielfeld[rdm1][rdm2] == '-')
+            {
+                spielfeld[rand() % gr1][rand() % gr2] = 'Z';
+            }
+            rdm1 = rand() % gr1;
+            rdm2 = rand() % gr1;
+            if (spielfeld[rdm1][rdm2] == '-')
+            {
+                spielfeld[rand() % gr1][rand() % gr2] = 'O';
+            }
         }
-        rdm1 = rand() % gr1;
-        rdm2 = rand() % gr1;
-        if (spielfeld[rdm1][rdm2] == '-')
-        {
-            spielfeld[rand() % gr1][rand() % gr2] = 'O';
-        }
+
         system("clear");
         fflush(stdin);
-        
+
         for (int i = 0; i < gr1; i++)
         {
             for (int j = 0; j < gr2; j++)
@@ -92,7 +97,7 @@ int main()
             {
                 score += 10;
             }
-
+            inputError = 1;
             spielfeld[x][y] = 'X';
         }
         else if (input == 'a')
@@ -107,7 +112,7 @@ int main()
             {
                 score += 10;
             }
-
+            inputError = 1;
             spielfeld[x][y] = 'X';
         }
         else if (input == 's')
@@ -122,7 +127,7 @@ int main()
             {
                 score += 10;
             }
-
+            inputError = 1;
             spielfeld[x][y] = 'X';
         }
         else if (input == 'd')
@@ -138,7 +143,7 @@ int main()
             {
                 score += 10;
             }
-
+            inputError = 1;
             spielfeld[x][y] = 'X';
         }
         else if (input == 'x')
@@ -148,13 +153,15 @@ int main()
         }
         else
         {
-            printf("Steuerung mit w, a, s, d");
+            printf("\n\nSteuerung mit w, a, s, d\n");
+            inputError = 0;
         }
     }
     printf("\n-----------------------------\nDu hasch verloren klein Pisser!!");
 }
 
-char getch() {
+char getch()
+{
     char buf = 0;
     struct termios old = {0};
     fflush(stdout);
