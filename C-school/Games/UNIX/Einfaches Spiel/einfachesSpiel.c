@@ -95,9 +95,9 @@ int main()
                 leben--;
             }
             if (spielfeld[x][y] == 'O')
-        {
-            score+=10;
-        }
+            {
+                score += 10;
+            }
 
             spielfeld[x][y] = 'X';
         }
@@ -114,9 +114,9 @@ int main()
                 leben--;
             }
             if (spielfeld[x][y] == 'O')
-        {
-            score+=10;
-        }
+            {
+                score += 10;
+            }
 
             spielfeld[x][y] = 'X';
         }
@@ -133,9 +133,9 @@ int main()
                 leben--;
             }
             if (spielfeld[x][y] == 'O')
-        {
-            score+=10;
-        }
+            {
+                score += 10;
+            }
 
             spielfeld[x][y] = 'X';
         }
@@ -144,7 +144,7 @@ int main()
             spielfeld[x][y] = '-';
             if (x >= gr1)
             {
-                x=0;
+                x = 0;
             }
             y++;
             if (spielfeld[x][y] == 'Z')
@@ -153,9 +153,9 @@ int main()
                 leben--;
             }
             if (spielfeld[x][y] == 'O')
-        {
-            score+=10;
-        }
+            {
+                score += 10;
+            }
 
             spielfeld[x][y] = 'X';
         }
