@@ -24,8 +24,8 @@ int main()
     char spieler = 'X';
     char input = 0;
 
-    //File Pointer
-    FILE *highscore_file = fopen("highscore.txt", "r+");
+    // File Pointer
+    FILE *highscore_file = fopen("highscore.txt", "r");
 
     if (highscore_file == NULL)
     {
@@ -36,7 +36,8 @@ int main()
     char highscoreChar[10];
 
     fgets(highscoreChar, 10, highscore_file);
-    
+
+    int highscoreINT = atoi(highscoreChar);
 
     printf("Gebe die Größe des Spielfels ein\n");
     printf("Spalten: ");
@@ -100,8 +101,7 @@ int main()
             }
             printf("|\n");
         }
-        printf("\nHighscore: ");
-        puts(highscoreChar);
+        printf("\nHighscore: %d", highscoreINT);
         printf("\nScore: %d", score);
         printf("\nLeben: %d\n", leben);
 
@@ -171,8 +171,17 @@ int main()
         else if (input == 'x')
         {
             printf("\n-----------------------------\nDas Spiel wurde beendet!!");
-            
+
             leben = 0;
+            if (highscoreINT < score)
+            {
+                fclose(highscore_file);
+                highscore_file = fopen("highscore.txt", "w");
+                fprintf(highscore_file, "%d", score);
+                printf("\n-----------------------------\nNeuer Highscore: %d", score);
+                fclose(highscore_file);
+            }
+
             return 0;
         }
         else
@@ -181,6 +190,15 @@ int main()
             inputError = 0;
         }
     }
+
+    if (highscoreINT < score)
+    {
+        fclose(highscore_file);
+        highscore_file = fopen("highscore.txt", "w");
+        fprintf(highscore_file, "%d", score);
+        printf("\n-----------------------------\nNeuer Highscore: %d", score);
+    }
+
     printf("\n-----------------------------\nLeben: 0\nDu hasch verloren klein Pisser!!");
     fclose(highscore_file);
 
