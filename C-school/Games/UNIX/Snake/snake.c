@@ -22,7 +22,7 @@ int main()
     char spielfeld[xPosition][yPosition];
 
     //welcomeScreen();
-    
+
 
     for (int i = 0; i < xPosition; i++)
     {
