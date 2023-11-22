@@ -77,13 +77,13 @@ int main()
         if (inputError)
         {
             rdm1 = rand() % gr1;
-            rdm2 = rand() % gr1;
+            rdm2 = rand() % gr2;
             if (spielfeld[rdm1][rdm2] == '-')
             {
                 spielfeld[rand() % gr1][rand() % gr2] = 'Z';
             }
             rdm1 = rand() % gr1;
-            rdm2 = rand() % gr1;
+            rdm2 = rand() % gr2;
             if (spielfeld[rdm1][rdm2] == '-')
             {
                 spielfeld[rand() % gr1][rand() % gr2] = 'O';
