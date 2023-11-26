@@ -24,6 +24,21 @@ int main()
     char spieler = 'X';
     char input = 0;
 
+    // File Pointer
+    FILE *highscore_file = fopen("highscore.txt", "r");
+
+    if (highscore_file == NULL)
+    {
+        printf("Highscore file wouldn't open!");
+        return -1;
+    }
+
+    char highscoreChar[10];
+
+    fgets(highscoreChar, 10, highscore_file);
+
+    int highscoreINT = atoi(highscoreChar);
+
     printf("Gebe die Größe des Spielfels ein\n");
     printf("Spalten: ");
     scanf("%d", &gr1);
@@ -62,13 +77,13 @@ int main()
         if (inputError)
         {
             rdm1 = rand() % gr1;
-            rdm2 = rand() % gr1;
+            rdm2 = rand() % gr2;
             if (spielfeld[rdm1][rdm2] == '-')
             {
                 spielfeld[rand() % gr1][rand() % gr2] = 'Z';
             }
             rdm1 = rand() % gr1;
-            rdm2 = rand() % gr1;
+            rdm2 = rand() % gr2;
             if (spielfeld[rdm1][rdm2] == '-')
             {
                 spielfeld[rand() % gr1][rand() % gr2] = 'O';
@@ -86,6 +101,7 @@ int main()
             }
             printf("|\n");
         }
+        printf("\nHighscore: %d", highscoreINT);
         printf("\nScore: %d", score);
         printf("\nLeben: %d\n", leben);
 
@@ -155,7 +171,18 @@ int main()
         else if (input == 'x')
         {
             printf("\n-----------------------------\nDas Spiel wurde beendet!!");
+
             leben = 0;
+            if (highscoreINT < score)
+            {
+                fclose(highscore_file);
+                highscore_file = fopen("highscore.txt", "w");
+                fprintf(highscore_file, "%d", score);
+                printf("\n-----------------------------\nNeuer Highscore: %d", score);
+                fclose(highscore_file);
+            }
+
+            return 0;
         }
         else
         {
@@ -163,7 +190,19 @@ int main()
             inputError = 0;
         }
     }
+
+    if (highscoreINT < score)
+    {
+        fclose(highscore_file);
+        highscore_file = fopen("highscore.txt", "w");
+        fprintf(highscore_file, "%d", score);
+        printf("\n-----------------------------\nNeuer Highscore: %d", score);
+    }
+
     printf("\n-----------------------------\nLeben: 0\nDu hasch verloren klein Pisser!!");
+    fclose(highscore_file);
+
+    return 0;
 }
 
 char getch()
