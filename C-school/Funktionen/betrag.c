@@ -13,8 +13,7 @@ int main()
     int eingabe = 0;
     printf("Gib deine Zahl ein: ");
     scanf("%d", &eingabe);
-    eingabe = betrag(eingabe);
-    printf("%d", eingabe);
+    printf("%d", betrag(eingabe));
 }
 
 int betrag(int eingabe){
