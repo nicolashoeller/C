@@ -24,7 +24,6 @@ int betrag(int eingabe){
     }
     else
     {
-        eingabe*=(-1);
-        return eingabe;
+        return -eingabe;
     }
 }
