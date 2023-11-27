@@ -27,6 +27,4 @@ int betrag(int eingabe){
         eingabe*=(-1);
         return eingabe;
     }
-    
-    
 }
