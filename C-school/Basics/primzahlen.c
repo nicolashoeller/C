@@ -10,7 +10,7 @@ int main()
     printf("--------------\n");
     printf("-----> ");
     scanf("%d", &eingabe);
-    printf("--------------\n");ions tha
+    printf("--------------\n");
 
     while (primz == 1 && (eingabe / 2) > i)
     {
