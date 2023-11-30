@@ -1,45 +1,44 @@
 /*
 File: primzahlen.c
-Date: 27.11.2023
+Date: 30.11.2023
 Autor: Nicolas Höller
 */
+
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdbool.h>
 
-int primzahlen(int);
+bool primzahlen(int);
 
-int main()
-{
-    int grenze = 0;
+int main() {
+    int eingabe;
 
-    printf("Gib ein bis zu welcher Zahl die Primzahl ausgegeben werden sollen\n----> ");
-    scanf("%d", &grenze);
-    printf("----------------------\n");
+    printf("Geben Sie eine positive Ganzzahl ein: ");
+    scanf("%d", &eingabe);
 
-    if (grenze <= 2)
-    {
-        printf("Gib eine groessere Zahl ein!");
-    }
-    else
-    {
-        for (int i = 0; i < grenze; i++)
-        {
-            if (primzahlen(i) == 0)
-            {
-                printf("%d\n", i);
-            }
-        }
-    }
-}
-
-int primzahlen(int i)
-{
-    if (i % 2 == 0 || i % 3 == 0 || i % 5 == 0 || i % 7 == 0)
-    {
-        return 1;
-    }
-    else
-    {
+    if (eingabe < 2) {
+        printf("Es gibt keine Primzahlen unterhalb von 2.\n");
         return 0;
     }
+
+    printf("Primzahlen bis %d: ", eingabe);
+    for (int i = 2; i <= eingabe; i++) {
+        if (primzahlen(i)) {
+            printf("%d\n", i);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+
+bool primzahlen(int num) {
+    if (num < 2) {
+        return false;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
 }
