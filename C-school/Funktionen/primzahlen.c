@@ -10,19 +10,31 @@ int primzahlen(int);
 
 int main()
 {
-    int grenze = 100;
-    for (int i = 0; i < grenze; i++)
+    int grenze = 0;
+
+    printf("Gib ein bis zu welcher Zahl die Primzahl ausgegeben werden sollen\n----> ");
+    scanf("%d", &grenze);
+    printf("----------------------\n");
+
+    if (grenze <= 2)
     {
-        if (primzahlen(i)==0)
+        printf("Gib eine groessere Zahl ein!");
+    }
+    else
+    {
+        for (int i = 0; i < grenze; i++)
         {
-            printf("%d\n", i);
+            if (primzahlen(i) == 0)
+            {
+                printf("%d\n", i);
+            }
         }
     }
-    
 }
 
-int primzahlen(int i){
-    if (i%2==0 || i%3==0 || i%5==0 || i%7==0)
+int primzahlen(int i)
+{
+    if (i % 2 == 0 || i % 3 == 0 || i % 5 == 0 || i % 7 == 0)
     {
         return 1;
     }
@@ -30,6 +42,4 @@ int primzahlen(int i){
     {
         return 0;
     }
-    
-    
 }
