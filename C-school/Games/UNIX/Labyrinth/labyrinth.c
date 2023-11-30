@@ -8,9 +8,12 @@ Autor: Nicolas Höller
 #include <unistd.h>
 #include <time.h>
 
+//Function index
+
 void welcome();
 void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
 int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
+int playerDead(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
 
 int main()
 {
@@ -23,6 +26,8 @@ int main()
 
     //welcome();
 
+    //Initialisiert array
+
     for (int i = 0; i < xKoordinate; i++)
     {
         for (int j = 0; j < yKoordinate; j++)
@@ -31,7 +36,8 @@ int main()
         }
     }
 
-    spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
+    //spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
+    spielfeld[0][yKoordinate / 2] = 'X';
 
     spielfeldPrint(xKoordinate, yKoordinate, spielfeld);
 
@@ -39,8 +45,15 @@ int main()
     {
         if (playerWin(player, xKoordinate, yKoordinate, spielfeld))
         {
-            printf("Du hast es geschafft");
+            printf("Er hat es geschafft");
+            return 0;
         }
+        if (playerDead(player, xKoordinate, yKoordinate, spielfeld))
+        {
+            printf("Er ist nun im Krankenhaus");
+            return 0;
+        }
+        
     }
 
     return 0;
@@ -56,6 +69,24 @@ int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoo
         }
     }
     return 0;
+}
+
+int playerDead(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
+{
+    for (int i = 0; i < xKoordinate; i++)
+    {
+        for (int j = 0; j < yKoordinate; j++)
+        {
+            if (spielfeld[i][j] == player)
+            {
+                return 0;
+            }
+            
+        }
+        
+    }
+    
+    return 1;
 }
 
 void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
