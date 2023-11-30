@@ -6,6 +6,8 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 
+void welcome();
+
 int main()
 {
     int xKoordinate = 11;
@@ -13,7 +15,11 @@ int main()
 
     char spielfeld[xKoordinate][yKoordinate];
     
+    welcome();
+
     system("clear");
+
+    printf("Mander saufts GLÜÜÜHWEINN!!!\n---------------------------\n");
 
     for (int i = 0; i < xKoordinate; i++)
     {
@@ -33,4 +39,15 @@ int main()
         printf("||\n");
     }
     
+}
+
+void welcome(){
+    printf("                 ██    ██\n");
+    printf("\n");
+    printf(" ██████  ██      ██    ██ ██   ██ ██     ██ ███████ ██ ███    ██ \n");
+    printf("██       ██      ██    ██ ██   ██ ██     ██ ██      ██ ████   ██ \n");
+    printf("██   ███ ██      ██    ██ ███████ ██  █  ██ █████   ██ ██ ██  ██ \n");
+    printf("██    ██ ██      ██    ██ ██   ██ ██ ███ ██ ██      ██ ██  ██ ██\n");
+    printf(" ██████  ███████  ██████  ██   ██  ███ ███  ███████ ██ ██   ████ \n");
+    sleep("3");
 }
