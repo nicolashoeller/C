@@ -23,7 +23,7 @@ int main() {
     printf("Primzahlen bis %d: ", eingabe);
     for (int i = 2; i <= eingabe; i++) {
         if (primzahlen(i)) {
-            printf("%d\n", i);
+            printf("%d ", i);
         }
     }
     printf("\n");
