@@ -6,28 +6,56 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 void welcome();
-void spielfeldPrint();
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
+int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
 
 int main()
 {
+    srand(time(NULL));
     int xKoordinate = 11;
     int yKoordinate = 20;
+    char player = 'X';
 
     char spielfeld[xKoordinate][yKoordinate];
 
-    welcome();
-    
+    //welcome();
+
     for (int i = 0; i < xKoordinate; i++)
     {
         for (int j = 0; j < yKoordinate; j++)
         {
-            spielfeld[i][j] = '#';
+            spielfeld[i][j] = '*';
         }
     }
 
+    spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
+
     spielfeldPrint(xKoordinate, yKoordinate, spielfeld);
+
+    for (int i = 0; i < xKoordinate; i++)
+    {
+        if (playerWin(player, xKoordinate, yKoordinate, spielfeld))
+        {
+            printf("Du hast es geschafft");
+        }
+    }
+
+    return 0;
+}
+
+int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
+{
+    for (int i = 0; i < yKoordinate; i++)
+    {
+        if (spielfeld[0][i] == player)
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
