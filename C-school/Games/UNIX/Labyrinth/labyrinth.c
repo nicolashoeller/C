@@ -5,8 +5,10 @@ Autor: Nicolas Höller
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void welcome();
+void spielfeldPrint();
 
 int main()
 {
@@ -14,20 +16,24 @@ int main()
     int yKoordinate = 20;
 
     char spielfeld[xKoordinate][yKoordinate];
-    
+
     welcome();
-
-    system("clear");
-
-    printf("Mander saufts GLÜÜÜHWEINN!!!\n---------------------------\n");
-
+    
     for (int i = 0; i < xKoordinate; i++)
     {
         for (int j = 0; j < yKoordinate; j++)
         {
-            spielfeld[i][j]='#';
+            spielfeld[i][j] = '#';
         }
     }
+
+    spielfeldPrint(xKoordinate, yKoordinate, spielfeld);
+}
+
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
+{
+    system("clear");
+    printf("Pass au, der hot GLÜÜHWEIN GSOFFEN!!\n---------------------------\n");
 
     for (int i = 0; i < xKoordinate; i++)
     {
@@ -38,10 +44,27 @@ int main()
         }
         printf("||\n");
     }
-    
 }
 
-void welcome(){
+void welcome()
+{
+    system("clear");
+    printf("\n\n");
+    printf("██      ███████ ████████ ███████ \n");
+    printf("██      ██         ██    ██      \n");
+    printf("██      █████      ██    ███████ \n");
+    printf("██      ██         ██         ██ \n");
+    printf("███████ ███████    ██    ███████ \n");
+    sleep(1);
+    system("clear");
+    printf("\n\n");
+    printf("███████  █████  ██    ██ ███████ \n");
+    printf("██      ██   ██ ██    ██ ██      \n");
+    printf("███████ ███████ ██    ██ █████   \n");
+    printf("     ██ ██   ██ ██    ██ ██      \n");
+    printf("███████ ██   ██  ██████  ██      \n");
+    sleep(1);
+    system("clear");
     printf("                 ██    ██\n");
     printf("\n");
     printf(" ██████  ██      ██    ██ ██   ██ ██     ██ ███████ ██ ███    ██ \n");
@@ -49,5 +72,5 @@ void welcome(){
     printf("██   ███ ██      ██    ██ ███████ ██  █  ██ █████   ██ ██ ██  ██ \n");
     printf("██    ██ ██      ██    ██ ██   ██ ██ ███ ██ ██      ██ ██  ██ ██\n");
     printf(" ██████  ███████  ██████  ██   ██  ███ ███  ███████ ██ ██   ████ \n");
-    sleep("3");
+    sleep(1);
 }
