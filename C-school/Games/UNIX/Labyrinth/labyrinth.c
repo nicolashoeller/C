@@ -84,17 +84,18 @@ int main()
         default:
             break;
         }
+
         if (xKoordinate >= 0 && xKoordinate < 11 && yKoordinate >= 0 && yKoordinate < 20)
         {
             spielfeld[xKoordinate][yKoordinate] = player;
             if (playerWin(player, height, whidth, spielfeld))
             {
-                spielfeld[xKoordinate-1][yKoordinate] = player;
+                spielfeld[xKoordinate - 1][yKoordinate] = player;
+                spielfeldPrint(height, whidth, spielfeld, versuche);
                 printf("\nLoter er hots gschofft!!\n");
                 printf("\nEs Verhältnis, dass der bsoffene durchkimmt liegt pa ca. 1/%d", versuche);
                 win = 1;
             }
-            
         }
         else if (xKoordinate < 0 || xKoordinate >= 11 || yKoordinate < 0 || yKoordinate >= 20)
         {
