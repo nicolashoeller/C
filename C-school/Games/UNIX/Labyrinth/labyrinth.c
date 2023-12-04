@@ -36,8 +36,7 @@ int main()
         }
     }
 
-    //spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
-    spielfeld[0][yKoordinate / 2] = 'X';
+    spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
 
     spielfeldPrint(xKoordinate, yKoordinate, spielfeld);
 
