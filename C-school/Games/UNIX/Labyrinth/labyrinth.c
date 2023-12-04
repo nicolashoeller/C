@@ -20,6 +20,9 @@ int main()
     srand(time(NULL));
     int xKoordinate = 11;
     int yKoordinate = 20;
+    int height = xKoordinate;
+    int whidth = yKoordinate;
+    int zufZahl = 0;
     char player = 'X';
 
     char spielfeld[xKoordinate][yKoordinate];
@@ -38,8 +41,50 @@ int main()
 
     spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
 
-    spielfeldPrint(xKoordinate, yKoordinate, spielfeld);
-
+    while (!playerWin(player, xKoordinate, yKoordinate, spielfeld) && !playerDead(player, xKoordinate, yKoordinate, spielfeld))
+    {
+        spielfeldPrint(height, whidth, spielfeld);
+        sleep(1);
+        
+        zufZahl = rand()%8;
+        switch (zufZahl)
+        {
+        case 0:
+            xKoordinate--;
+            break;
+        case 1:
+            xKoordinate++;
+            break;
+        case 2:
+            yKoordinate--;
+            break;
+        case 3:
+            yKoordinate++;
+            break;
+        case 4:
+            xKoordinate++;
+            yKoordinate++;
+            break;
+        case 5:
+            xKoordinate--;
+            yKoordinate++;
+            break;
+        case 6:
+            xKoordinate++;
+            yKoordinate--;
+            break;
+        case 7:
+            xKoordinate--;
+            yKoordinate--;
+            break;
+        default:
+            break;
+        }
+        if (xKoordinate >= 0 && xKoordinate < 11 && yKoordinate >= 0 && yKoordinate < 20)
+        {
+            spielfeld[xKoordinate][yKoordinate] = player;
+        }
+    }
     for (int i = 0; i < xKoordinate; i++)
     {
         if (playerWin(player, xKoordinate, yKoordinate, spielfeld))
@@ -57,6 +102,8 @@ int main()
 
     return 0;
 }
+
+//-----------------------------------------------------------------------------------------------------
 
 int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
 {
