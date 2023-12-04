@@ -8,12 +8,11 @@ Autor: Nicolas Höller
 #include <unistd.h>
 #include <time.h>
 
-//Function index
+// Function index
 
 void welcome();
-void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int count);
 int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
-int playerDead(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
 
 int main()
 {
@@ -24,12 +23,14 @@ int main()
     int whidth = yKoordinate;
     int zufZahl = 0;
     char player = 'X';
+    int count = 0;
+    int win = 0;
 
     char spielfeld[xKoordinate][yKoordinate];
 
-    //welcome();
+    welcome();
 
-    //Initialisiert array
+    // Initialisiert array
 
     for (int i = 0; i < xKoordinate; i++)
     {
@@ -40,16 +41,16 @@ int main()
     }
 
     xKoordinate--;
-    yKoordinate/=2;
+    yKoordinate /= 2;
 
     spielfeld[xKoordinate][yKoordinate] = 'X';
 
-    while (!playerWin(player, height, whidth, spielfeld) && !playerDead(player, height, whidth, spielfeld))
+    while (!win)
     {
-        spielfeldPrint(height, whidth, spielfeld);
+        spielfeldPrint(height, whidth, spielfeld, count);
         sleep(1);
         spielfeld[xKoordinate][yKoordinate] = '*';
-        zufZahl = rand()%8;
+        zufZahl = rand() % 8;
         switch (zufZahl)
         {
         case 0:
@@ -87,20 +88,20 @@ int main()
         {
             spielfeld[xKoordinate][yKoordinate] = player;
         }
-    }
-    for (int i = 0; i < xKoordinate; i++)
-    {
-        if (playerWin(player, xKoordinate, yKoordinate, spielfeld))
+        else if (xKoordinate < 0 || xKoordinate >= 11 || yKoordinate < 0 || yKoordinate >= 20)
         {
-            printf("Er hat es geschafft");
-            return 0;
+            printf("\nJetz hoebn sie ihn gfassen, soll er lei no amol probieren!\n");
+            xKoordinate = height - 1;
+            yKoordinate = whidth / 2;
+            spielfeld[xKoordinate][yKoordinate] = 'X';
+            count++;
+            sleep(4);
         }
-        if (playerDead(player, xKoordinate, yKoordinate, spielfeld))
+        else if (!playerWin(player, xKoordinate, yKoordinate, spielfeld))
         {
-            printf("Er ist nun im Krankenhaus");
-            return 0;
+            printf("\nLoter er hots gschofft!!\n");
+            win = 1;
         }
-        
     }
 
     return 0;
@@ -120,28 +121,10 @@ int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoo
     return 0;
 }
 
-int playerDead(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
-{
-    for (int i = 0; i < xKoordinate; i++)
-    {
-        for (int j = 0; j < yKoordinate; j++)
-        {
-            if (spielfeld[i][j] == player)
-            {
-                return 0;
-            }
-            
-        }
-        
-    }
-    
-    return 1;
-}
-
-void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate])
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int count)
 {
     system("clear");
-    printf("Pass au, der hot GLÜÜHWEIN GSOFFEN!!\n---------------------------\n");
+    printf("\nPass au, der hot GLÜÜHWEIN GSOFFEN!!\n---------------------------\n");
 
     for (int i = 0; i < xKoordinate; i++)
     {
@@ -152,6 +135,8 @@ void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate
         }
         printf("||\n");
     }
+
+    printf("\nVeruche: %d", count);
 }
 
 void welcome()
