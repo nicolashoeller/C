@@ -39,13 +39,16 @@ int main()
         }
     }
 
-    spielfeld[xKoordinate - 1][yKoordinate / 2] = 'X';
+    xKoordinate--;
+    yKoordinate/=2;
 
-    while (!playerWin(player, xKoordinate, yKoordinate, spielfeld) && !playerDead(player, xKoordinate, yKoordinate, spielfeld))
+    spielfeld[xKoordinate][yKoordinate] = 'X';
+
+    while (!playerWin(player, height, whidth, spielfeld) && !playerDead(player, height, whidth, spielfeld))
     {
         spielfeldPrint(height, whidth, spielfeld);
         sleep(1);
-        
+        spielfeld[xKoordinate][yKoordinate] = '*';
         zufZahl = rand()%8;
         switch (zufZahl)
         {
