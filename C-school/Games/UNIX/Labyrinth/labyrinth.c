@@ -11,7 +11,7 @@ Autor: Nicolas Höller
 // Function index
 
 void welcome();
-void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int count);
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int versuche);
 int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate]);
 
 int main()
@@ -23,7 +23,7 @@ int main()
     int whidth = yKoordinate;
     int zufZahl = 0;
     char player = 'X';
-    int count = 0;
+    int versuche = 0;
     int win = 0;
 
     char spielfeld[xKoordinate][yKoordinate];
@@ -47,7 +47,7 @@ int main()
 
     while (!win)
     {
-        spielfeldPrint(height, whidth, spielfeld, count);
+        spielfeldPrint(height, whidth, spielfeld, versuche);
         sleep(1);
         spielfeld[xKoordinate][yKoordinate] = '*';
         zufZahl = rand() % 8;
@@ -87,20 +87,23 @@ int main()
         if (xKoordinate >= 0 && xKoordinate < 11 && yKoordinate >= 0 && yKoordinate < 20)
         {
             spielfeld[xKoordinate][yKoordinate] = player;
+            if (playerWin(player, height, whidth, spielfeld))
+            {
+                spielfeld[xKoordinate-1][yKoordinate] = player;
+                printf("\nLoter er hots gschofft!!\n");
+                printf("\nEs Verhältnis, dass der bsoffene durchkimmt liegt pa ca. 1/%d", versuche);
+                win = 1;
+            }
+            
         }
         else if (xKoordinate < 0 || xKoordinate >= 11 || yKoordinate < 0 || yKoordinate >= 20)
         {
-            printf("\nJetz hoebn sie ihn gfassen, soll er lei no amol probieren!\n");
+            printf("\nJetz hobn sie ihn gfassen, soll er lei no amol probieren!\n");
             xKoordinate = height - 1;
             yKoordinate = whidth / 2;
             spielfeld[xKoordinate][yKoordinate] = 'X';
-            count++;
-            sleep(4);
-        }
-        else if (!playerWin(player, xKoordinate, yKoordinate, spielfeld))
-        {
-            printf("\nLoter er hots gschofft!!\n");
-            win = 1;
+            versuche++;
+            sleep(3);
         }
     }
 
@@ -121,7 +124,7 @@ int playerWin(char player, int xKoordinate, int yKoordinate, char spielfeld[xKoo
     return 0;
 }
 
-void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int count)
+void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate][yKoordinate], int versuche)
 {
     system("clear");
     printf("\nPass au, der hot GLÜÜHWEIN GSOFFEN!!\n---------------------------\n");
@@ -136,7 +139,7 @@ void spielfeldPrint(int xKoordinate, int yKoordinate, char spielfeld[xKoordinate
         printf("||\n");
     }
 
-    printf("\nVeruche: %d", count);
+    printf("\nVeruche: %d", versuche);
 }
 
 void welcome()
