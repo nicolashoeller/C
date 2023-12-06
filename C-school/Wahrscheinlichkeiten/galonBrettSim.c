@@ -8,4 +8,5 @@ Autor: Nicolas Höller
 
 int main()
 {
+    int kugeln = 0;
 }
