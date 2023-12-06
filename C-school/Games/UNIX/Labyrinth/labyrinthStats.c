@@ -42,7 +42,7 @@ int main()
 
     spielfeld[xKoordinate][yKoordinate] = 'X';
 
-    while (versuche < 1001)
+    while (versuche < 10001)
     {
         spielfeldPrint(height, whidth, spielfeld, versuche);
         spielfeld[xKoordinate][yKoordinate] = '*';
