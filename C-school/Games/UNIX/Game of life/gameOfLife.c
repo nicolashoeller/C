@@ -69,7 +69,7 @@ int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player
                     neighbors++;
                 }
             }
-            
+            printf("FUCK OFF!!\n");
         }
         
     }
