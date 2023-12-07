@@ -58,6 +58,18 @@ int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player
             {
                 neighbors++;
             }
+            for (int a = -1; a < 2; a++)
+            {
+                if (welt[(i - a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+                {
+                    neighbors++;
+                }
+                if (welt[(i + a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+                {
+                    neighbors++;
+                }
+            }
+            
         }
         
     }
