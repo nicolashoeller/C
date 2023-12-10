@@ -17,7 +17,8 @@ int zellenAngabe(int zeilen, int spalten);
 void boardInitialisieren(int zeilen, int spalten, char welt[zeilen][spalten]);
 void boardPrint(int zeilen, int spalten, char welt[zeilen][spalten]);
 void fillUp(int zeilen, int spalten, char welt[zeilen][spalten], int lifeZellen, char player);
-int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player);
+int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j);
+void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player);
 char getch();
 
 int main(int argc, char* argv[])
@@ -27,6 +28,7 @@ int main(int argc, char* argv[])
     int spalten = spaltenAngabe();
     int lifeZellen = zellenAngabe(zeilen, spalten);
     char player = 'X';
+    int neighbors;
 
     system("clear");
 
@@ -35,47 +37,66 @@ int main(int argc, char* argv[])
     fillUp(zeilen, spalten, welt, lifeZellen, player);
     while (1)
     {
-        checkFields(zeilen, spalten, welt, player);
+        for (int i = 0; i < zeilen; i++)
+        {
+            for (int j = 0; j < spalten; j++)
+            {
+                neighbors = checkFields(zeilen, spalten, welt, player, i, j);
+                replaceFields(zeilen, spalten, welt, neighbors, i, j, player);
+            }
+            
+        }
+        printf("%d", neighbors);
+        boardPrint(zeilen, spalten, welt);
+        getch();
     }
-    
-    
-    
 }
 
 //----------------------------------------------------------------------------------------------------
 
-int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player){
-    int neighbors = 0;
-    for (int i = 0; i < zeilen; i++)
+void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player){
+    if (welt[i][j] == player)
     {
-        for (int j = 0; j < spalten; j++)
+        if (neighbors != 2 && neighbors != 3)
         {
-            if (welt[(i + 1 + zeilen)%zeilen][(j + 1 + spalten) % spalten] == player)
-            {
-                neighbors++;
-            }
-            if (welt[(i - 1 + zeilen)%zeilen][(j - 1 + spalten) % spalten] == player)
-            {
-                neighbors++;
-            }
-            for (int a = -1; a < 2; a++)
-            {
-                if (welt[(i - a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
-                {
-                    neighbors++;
-                }
-                if (welt[(i + a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
-                {
-                    neighbors++;
-                }
-            }
-            printf("FUCK OFF!!\n");
+            welt[i][j] = '-';
+        }
+    }
+    else
+    {
+        if (neighbors == 3)
+        {
+            welt[i][j] = player;
         }
         
     }
-    printf("%d", neighbors);
-    boardPrint(zeilen, spalten, welt);
-    getch();
+    
+    
+}
+
+int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j){
+    int neighbors = 0;
+
+    if (welt[(i + 1 + zeilen)%zeilen][(j + 1 + spalten) % spalten] == player)
+    {
+        neighbors++;
+    }
+    if (welt[(i - 1 + zeilen)%zeilen][(j - 1 + spalten) % spalten] == player)
+    {
+        neighbors++;
+    }
+    for (int a = -1; a < 2; a++)
+    {
+        if (welt[(i - a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+        {
+            neighbors++;
+        }
+        if (welt[(i + a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+        {
+            neighbors++;
+        }
+    }
+    return neighbors;
     
 }
 
