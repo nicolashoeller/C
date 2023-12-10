@@ -41,14 +41,18 @@ int main(int argc, char* argv[])
         {
             for (int j = 0; j < spalten; j++)
             {
+
                 neighbors = checkFields(zeilen, spalten, welt, player, i, j);
                 replaceFields(zeilen, spalten, welt, neighbors, i, j, player);
+
             }
             
         }
-        printf("%d", neighbors);
         boardPrint(zeilen, spalten, welt);
-        getch();
+        usleep(200000);
+
+        system("clear");
+        
     }
 }
 
@@ -57,10 +61,15 @@ int main(int argc, char* argv[])
 void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player){
     if (welt[i][j] == player)
     {
-        if (neighbors != 2 && neighbors != 3)
+        if (neighbors == 2 || neighbors == 3)
+        {
+            welt[i][j] = player;
+        }
+        else
         {
             welt[i][j] = '-';
         }
+        
     }
     else
     {
@@ -87,11 +96,11 @@ int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player
     }
     for (int a = -1; a < 2; a++)
     {
-        if (welt[(i - a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+        if (welt[(i - a + zeilen)%zeilen][(i - a + spalten)%spalten] == player)
         {
             neighbors++;
         }
-        if (welt[(i + a + zeilen)%zeilen][(i - a + zeilen)%zeilen] == player)
+        if (welt[(i + a + zeilen)%zeilen][(i + a + spalten)%spalten] == player)
         {
             neighbors++;
         }
