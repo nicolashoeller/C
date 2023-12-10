@@ -116,7 +116,7 @@ int zeilenAngabe(){
     {
         printf("Gib die Anzahl der Zeilen an: ");
         scanf("%d", &zeilen);
-        if (zeilen < 10 )
+        if (zeilen <= 10 )
         {
             printf("Die kleinste Größe der Spalten ist 10\n");
         }
@@ -136,7 +136,7 @@ int spaltenAngabe(){
     {
         printf("Gib die Anzahl der Spalten an: ");
         scanf("%d", &spalten);
-        if (spalten < 10 )
+        if (spalten <= 10 )
         {
             printf("Die kleinste Größe der Spalten ist 10\n");
         }
