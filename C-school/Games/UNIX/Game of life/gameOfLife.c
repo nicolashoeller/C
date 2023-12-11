@@ -18,7 +18,7 @@ void boardInitialisieren(int zeilen, int spalten, char welt[zeilen][spalten]);
 void boardPrint(int zeilen, int spalten, char welt[zeilen][spalten]);
 void fillUp(int zeilen, int spalten, char welt[zeilen][spalten], int lifeZellen, char player);
 int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j);
-void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player);
+void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player, char tempWelt[zeilen][spalten]);
 char getch();
 
 int main(int argc, char* argv[])
@@ -33,55 +33,65 @@ int main(int argc, char* argv[])
     system("clear");
 
     char welt[zeilen][spalten];
+    char tempWelt[zeilen][spalten];
     boardInitialisieren(zeilen, spalten, welt);
     fillUp(zeilen, spalten, welt, lifeZellen, player);
+    
     while (1)
     {
         for (int i = 0; i < zeilen; i++)
         {
             for (int j = 0; j < spalten; j++)
             {
-
                 neighbors = checkFields(zeilen, spalten, welt, player, i, j);
-                replaceFields(zeilen, spalten, welt, neighbors, i, j, player);
-
+                replaceFields(zeilen, spalten, welt, neighbors, i, j, player, tempWelt);
             }
-            
         }
+        
+        // Copy the new state back to the original array
+        for (int i = 0; i < zeilen; i++)
+        {
+            for (int j = 0; j < spalten; j++)
+            {
+                welt[i][j] = tempWelt[i][j];
+            }
+        }
+
         boardPrint(zeilen, spalten, welt);
         usleep(200000);
 
         system("clear");
-        
     }
 }
 
 //----------------------------------------------------------------------------------------------------
 
-void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player){
+void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neighbors, int i, int j, char player, char tempWelt[zeilen][spalten])
+{
     if (welt[i][j] == player)
     {
         if (neighbors == 2 || neighbors == 3)
         {
-            welt[i][j] = player;
+            tempWelt[i][j] = player;
         }
         else
         {
-            welt[i][j] = '-';
+            tempWelt[i][j] = '-';
         }
-        
     }
     else
     {
         if (neighbors == 3)
         {
-            welt[i][j] = player;
+            tempWelt[i][j] = player;
         }
-        
+        else
+        {
+            tempWelt[i][j] = '-';
+        }
     }
-    
-    
 }
+
 
 int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j){
     int neighbors = 0;
