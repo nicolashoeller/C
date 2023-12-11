@@ -97,24 +97,25 @@ int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player
 {
     int neighbors = 0;
 
-    if (welt[(i + 1 + zeilen) % zeilen][(j + 1 + spalten) % spalten] == player)
+    if (welt[(i - 1 + zeilen) % zeilen][(j + 0 + spalten) % spalten] == player)
     {
         neighbors++;
     }
-    if (welt[(i - 1 + zeilen) % zeilen][(j - 1 + spalten) % spalten] == player)
+    if (welt[(i + 1 + zeilen) % zeilen][(j + 0 + spalten) % spalten] == player)
     {
         neighbors++;
     }
     for (int a = -1; a < 2; a++)
     {
-        if (welt[(i - a + zeilen) % zeilen][(j - a + spalten) % spalten] == player)
+        if (welt[(i + a + zeilen) % zeilen][(j - 1 + spalten) % spalten] == player)
         {
             neighbors++;
         }
-        if (welt[(i + a + zeilen) % zeilen][(j + a + spalten) % spalten] == player)
+        if (welt[(i + a + zeilen) % zeilen][(j + 1 + spalten) % spalten] == player)
         {
             neighbors++;
         }
+        
     }
     return neighbors;
 }
