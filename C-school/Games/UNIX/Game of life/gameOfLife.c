@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
     char welt[zeilen][spalten];
     char tempWelt[zeilen][spalten];
     boardInitialisieren(zeilen, spalten, welt, lifeZellen, player);
+    boardPrint(zeilen, spalten, welt);
+
 
     while (1)
     {
