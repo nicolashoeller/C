@@ -93,30 +93,30 @@ void replaceFields(int zeilen, int spalten, char welt[zeilen][spalten], int neig
 }
 
 
-int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j){
+int checkFields(int zeilen, int spalten, char welt[zeilen][spalten], char player, int i, int j)
+{
     int neighbors = 0;
 
-    if (welt[(i + 1 + zeilen)%zeilen][(j + 1 + spalten) % spalten] == player)
+    if (welt[(i + 1 + zeilen) % zeilen][(j + 1 + spalten) % spalten] == player)
     {
         neighbors++;
     }
-    if (welt[(i - 1 + zeilen)%zeilen][(j - 1 + spalten) % spalten] == player)
+    if (welt[(i - 1 + zeilen) % zeilen][(j - 1 + spalten) % spalten] == player)
     {
         neighbors++;
     }
     for (int a = -1; a < 2; a++)
     {
-        if (welt[(i - a + zeilen)%zeilen][(i - a + spalten)%spalten] == player)
+        if (welt[(i - a + zeilen) % zeilen][(j - a + spalten) % spalten] == player)
         {
             neighbors++;
         }
-        if (welt[(i + a + zeilen)%zeilen][(i + a + spalten)%spalten] == player)
+        if (welt[(i + a + zeilen) % zeilen][(j + a + spalten) % spalten] == player)
         {
             neighbors++;
         }
     }
     return neighbors;
-    
 }
 
 int zeilenAngabe(){
