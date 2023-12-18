@@ -1,3 +1,9 @@
+/*
+File: string.c
+Date: 18.12.2023
+Autor: Nicolas Höller
+*/
+
 #include <stdio.h>
 
 int calculate(char*);
