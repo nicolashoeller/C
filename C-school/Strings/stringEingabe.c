@@ -7,17 +7,8 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+void processString(char string[], int option)
 {
-    char string[50];
-    int option;
-
-    printf("Bitte geben Sie einen String ein: ");
-    scanf("%s", string);
-
-    printf("Soll der String in Großbuchstaben (1) oder in Kleinbuchastaben (2) ausgegeben werden?\n", string);
-    scanf("%d", &option);
-
     switch (option)
     {
         case 1:
@@ -41,4 +32,20 @@ int main(int argc, char* argv[])
             printf("%s", string);
             break;
     }
+}
+
+int main(int argc, char* argv[])
+{
+    char string[50];
+    int option;
+
+    printf("Bitte geben Sie einen String ein: ");
+    scanf("%s", string);
+
+    printf("Soll der String in Großbuchstaben (1) oder in Kleinbuchstaben (2) ausgegeben werden?\n", string);
+    scanf("%d", &option);
+
+    processString(string, option);
+
+    return 0;
 }
