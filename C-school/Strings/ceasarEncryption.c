@@ -33,7 +33,7 @@ void ceasarDecryption(char* string, int verschiebung)
     for (int i = 0; string[i] != '\0'; i++)
     {
         if (string[i] >= 'a' && string[i] <= 'z') {
-            string[i] = ((string[i] - 'a' - verschiebung) % 26) + 'a';
+            string[i] = ((string[i] - 'a' + verschiebung) % 26) + 'a';
         }
     }
 }
