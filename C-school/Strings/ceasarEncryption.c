@@ -10,6 +10,7 @@ Autor: Nicolas Höller
 
 #define MAX 100
 
+int stringInput(char*);
 void ceasarDecryption(char*, int);
 
 int main(int argc, char* argv[])
@@ -17,15 +18,22 @@ int main(int argc, char* argv[])
     char stringEingabe[MAX];
     int verschiebung = 0;
 
+    verschiebung = stringInput(stringEingabe);
+    ceasarDecryption(stringEingabe, verschiebung);
+    printf("Der verschlüsselte String lautet: %s", stringEingabe);
+
+    return 0;
+}
+
+int stringInput(char* string)
+{
+    int verschiebung = 0;
     printf("Bitte geben Sie einen String ein: ");
-    fgets(stringEingabe, MAX, stdin);
+    fgets(string, MAX, stdin);
     printf("Um wie viele Stellen soll der String verschoben werden? ");
     scanf("%d", &verschiebung);
 
-    ceasarDecryption(stringEingabe, verschiebung);
-
-    printf("Der verschlüsselte String lautet: %s", stringEingabe);
-    return 0;
+    return verschiebung;
 }
 
 void ceasarDecryption(char* string, int verschiebung)
