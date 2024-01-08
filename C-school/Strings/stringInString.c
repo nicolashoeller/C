@@ -9,6 +9,7 @@ Autor: Nicolas Höller
 
 void eingabe(char*, char*);
 void vergleich(char*, char*);
+void removeNewline(char*, char*);
 
 int main(int argc, char* argv[])
 {
@@ -16,6 +17,7 @@ int main(int argc, char* argv[])
     char string2[100];
 
     eingabe(string1, string2);
+    removeNewline(string1, string2);
     vergleich(string1, string2);
     
     return 0;
@@ -32,7 +34,7 @@ void eingabe(char* string1, char* string2)
 void vergleich(char* string1, char* string2)
 {
     printf("-----------------------------\n");
-    
+
     if (strstr(string1, string2) != NULL)
     {
         printf("String 2 ist in String 1 enthalten\n");
@@ -40,5 +42,18 @@ void vergleich(char* string1, char* string2)
     else
     {
         printf("String 2 ist nicht in String 1 enthalten\n");
+    }
+}
+
+void removeNewline(char* string1, char* string2)
+{
+    int len = strlen(string1);
+    if (len > 0 && string1[len-1] == '\n') {
+        string1[len-1] = '\0';
+    }
+    
+    len = strlen(string2);
+    if (len > 0 && string2[len-1] == '\n') {
+        string2[len-1] = '\0';
     }
 }
