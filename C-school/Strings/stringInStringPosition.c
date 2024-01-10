@@ -8,7 +8,7 @@ Autor: Nicolas Höller
 #include <string.h>
 
 void eingabe(char*, char*);
-void vergleich(char*, char*);
+void vergleichStrings(char*, char*);
 void removeNewline(char*, char*);
 
 int main(int argc, char* argv[])
@@ -16,9 +16,10 @@ int main(int argc, char* argv[])
     char string1[100];
     char string2[100];
 
+    
     eingabe(string1, string2);
     removeNewline(string1, string2);
-    vergleich(string1, string2);
+    vergleichStrings(string1, string2);
     
     return 0;
 }
@@ -31,7 +32,7 @@ void eingabe(char* string1, char* string2)
     fgets(string2, 100, stdin);
 }
 
-void vergleich(char* string1, char* string2)
+void vergleichStrings(char* string1, char* string2)
 {
     printf("-----------------------------\n");
 
@@ -42,6 +43,7 @@ void vergleich(char* string1, char* string2)
     else
     {
         printf("String 2 ist nicht in String 1 enthalten\n");
+        return 0;
     }
 }
 
