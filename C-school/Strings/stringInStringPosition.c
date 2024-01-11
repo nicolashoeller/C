@@ -52,10 +52,10 @@ void vergleichStrings(char* string1, char* string2)
 
 int position(char* string1, char* string2)
 {
-    char *pos_ptr = strstr(string1, string2);
-    if (pos_ptr != NULL)
+    char *posPtr = strstr(string1, string2);
+    if (posPtr != NULL)
     {
-        int pos = pos_ptr - string1;
+        int pos = posPtr - string1;
         return pos;
     }
     else
