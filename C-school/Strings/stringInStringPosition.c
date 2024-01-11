@@ -7,6 +7,7 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX 100
 
 void eingabe(char*, char*);
 void vergleichStrings(char*, char*);
@@ -15,8 +16,8 @@ void removeNewline(char*, char*);
 
 int main(int argc, char* argv[])
 {
-    char string1[100];
-    char string2[100];
+    char string1[MAX];
+    char string2[MAX];
 
     
     eingabe(string1, string2);
@@ -31,9 +32,9 @@ int main(int argc, char* argv[])
 void eingabe(char* string1, char* string2)
 {
     printf("Gib den ersten String ein: ");
-    fgets(string1, 100, stdin);
+    fgets(string1, MAX, stdin);
     printf("Gib den zweiten String ein: ");
-    fgets(string2, 100, stdin);
+    fgets(string2, MAX, stdin);
 }
 
 void vergleichStrings(char* string1, char* string2)
