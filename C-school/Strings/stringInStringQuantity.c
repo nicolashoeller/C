@@ -1,5 +1,5 @@
 /*
-File: stringInStringPosition.c
+File: stringInStringQuantity.c
 Date: 11.01.2024
 Autor: Nicolas Höller
 */
