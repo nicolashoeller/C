@@ -9,6 +9,7 @@ Autor: Nicolas Höller
 
 void eingabe(char*, char*);
 void vergleichStrings(char*, char*);
+int position(char*, char*);
 void removeNewline(char*, char*);
 
 int main(int argc, char* argv[])
@@ -20,7 +21,9 @@ int main(int argc, char* argv[])
     eingabe(string1, string2);
     removeNewline(string1, string2);
     vergleichStrings(string1, string2);
-    
+    int pos = position(string1, string2);
+    printf("Der zweite String beginnt an der Position %d im ersten String\n", pos+1);
+
     return 0;
 }
 
@@ -43,7 +46,21 @@ void vergleichStrings(char* string1, char* string2)
     else
     {
         printf("String 2 ist nicht in String 1 enthalten\n");
-        return 0;
+        return;
+    }
+}
+
+int position(char* string1, char* string2)
+{
+    char *pos_ptr = strstr(string1, string2);
+    if (pos_ptr != NULL)
+    {
+        int pos = pos_ptr - string1;
+        return pos;
+    }
+    else
+    {
+        return -1;
     }
 }
 
