@@ -7,16 +7,18 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX 100
 
 void eingabe(char*, char*);
 void vergleichStrings(char*, char*);
 int position(char*, char*);
+int quantity(char*, char*);
 void removeNewline(char*, char*);
 
 int main(int argc, char* argv[])
 {
-    char string1[100];
-    char string2[100];
+    char string1[MAX];
+    char string2[MAX];
 
     
     eingabe(string1, string2);
@@ -24,6 +26,7 @@ int main(int argc, char* argv[])
     vergleichStrings(string1, string2);
     int pos = position(string1, string2);
     printf("Der zweite String beginnt an der Position %d im ersten String\n", pos+1);
+    printf("%d", quantity(string1, string2));
 
     return 0;
 }
@@ -31,9 +34,9 @@ int main(int argc, char* argv[])
 void eingabe(char* string1, char* string2)
 {
     printf("Gib den ersten String ein: ");
-    fgets(string1, 100, stdin);
+    fgets(string1, MAX, stdin);
     printf("Gib den zweiten String ein: ");
-    fgets(string2, 100, stdin);
+    fgets(string2, MAX, stdin);
 }
 
 void vergleichStrings(char* string1, char* string2)
@@ -43,6 +46,7 @@ void vergleichStrings(char* string1, char* string2)
     if (strstr(string1, string2) != NULL)
     {
         printf("String 2 ist in String 1 enthalten\n");
+
     }
     else
     {
@@ -63,6 +67,18 @@ int position(char* string1, char* string2)
     {
         return -1;
     }
+}
+
+int quantity(char* string1, char* string2){
+    int count = 0;
+    char *posPtr = strstr(string1, string2);
+    while (posPtr != NULL)
+    {
+        count++;
+        posPtr = strstr(posPtr + 1, string2);
+    }
+
+    return count;
 }
 
 void removeNewline(char* string1, char* string2)
