@@ -7,13 +7,11 @@ Autor: Nicolas Höller
 #include <stdlib.h>
 
 void printArray(int[]);
-void ueberpruefung(int, int, int[], FILE *);
+void ueberpruefung(int[], FILE *);
 
 int main(int argc, char *argv[])
 {
     FILE *file = fopen(argv[1], "r");
-    int temp = 0;
-    int index = 0;
     int array[26] = {0};
 
     if (file == NULL)
@@ -22,13 +20,15 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    ueberpruefung(temp, index, array, file);
+    ueberpruefung(array, file);
     printArray(array);
 
     fclose(file);
 }
 
-void ueberpruefung(int temp, int index, int array[], FILE *file){
+void ueberpruefung(int array[], FILE *file){
+    int temp = 0;
+    int index = 0;
     while ((temp = fgetc(file)) != EOF)
     {
         if (temp >= 'A' && temp <= 'Z')
