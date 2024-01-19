@@ -8,12 +8,13 @@ Autor: Nicolas Höller
 #include <string.h>
 #define MAX 100
 
+void getUserName(char*);
+
 int main(int argc, char* argv[])
 {
-    char* fileName = argv[1];
     char userName[MAX];
     
-    FILE* file = fopen(fileName, "r");
+    FILE* file = fopen(argv[1], "r");
 
     if (file == NULL)
     {
@@ -21,6 +22,13 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    getUserName(userName);
     fclose(file);
     return 0;
+}
+
+void getUserName(char* userName){
+    printf("Nach welchem Namen soll gesucht werden?\n");
+    printf("---->");
+    fgets(userName, MAX, stdin);
 }
