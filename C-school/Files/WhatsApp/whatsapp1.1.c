@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    FILE *fp = fopen(argv[1], "r");
+    FILE *fp = fopen(argv[2], "r");
 
     if (!fp)
     {
@@ -35,7 +35,11 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    analyzeMessages(fp);
+    if (!strcmp(argv[1], "-d"))
+    {
+        analyzeMessages(fp);
+    }
+
     fclose(fp);
 
     for (int i = 0; i < people_count; i++)
