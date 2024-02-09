@@ -17,7 +17,9 @@ int main(int argc, char *argv[])
 {
     char array[MAX];
     int temp;
+
     iniArray(array);
+
     temp = eingabe();
 
     switch (temp)
@@ -65,7 +67,7 @@ void firstFit(char *array)
     int laenge;
     int auswahl;
     char buchstabe;
-    
+
     while (1)
     {
         printf("Hinzufügen (1), löschen (2): ");
@@ -77,24 +79,37 @@ void firstFit(char *array)
             scanf(" %c", &buchstabe);
             printf("Bitte gib die Größe des Speicherblocks ein: ");
             scanf("%d", &laenge);
-            
-            for (int i = 0; i < MAX; i++)
+
+            for (int i = 0; i < MAX;)
             {
-                if (array[i] == '0' && i + laenge < MAX)
+                if (array[i] == '0' && i + laenge <= MAX)
                 {
-                    for (int j = 0; j < laenge; j++)
+                    int count = 0;
+                    while (array[i] == '0' && count < laenge)
                     {
-                        array[i + j] = buchstabe;
+                        count++;
+                        i++;
                     }
-                    break;
+                    if (count == laenge)
+                    {
+                        for (int j = 0; j < laenge; j++)
+                        {
+                            array[i - laenge + j] = buchstabe;
+                        }
+                        break; // break out of the for loop when enough space is found
+                    }
+                }
+                else
+                {
+                    i++;
                 }
             }
             arrayPrint(array);
             break;
         case 2:
             printf("Bitte gib den Buchstaben ein: ");
-            scanf(" %c", &buchstabe);         
-            
+            scanf(" %c", &buchstabe);
+
             for (int i = 0; i < MAX; i++)
             {
                 if (array[i] == buchstabe)
@@ -103,9 +118,9 @@ void firstFit(char *array)
                 }
             }
             arrayPrint(array);
-        break;
+            break;
         default:
-        printf("Falsche Eingabe");
+            printf("Falsche Eingabe");
             break;
         }
     }
