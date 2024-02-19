@@ -42,15 +42,15 @@ int main(int argc, char *argv[])
     {
         fseek(fp, 0, SEEK_SET);
         int count = analyzeAllSymbols(fp);
-        printf("Anzahl aller Zeichen: %d\n\n\n", count);
-        printf("-------------------\n\n\n");
+        printf("Anzahl aller Zeichen: %d\n\n", count);
+        printf("-------------------\n\n");
     }
 
     fclose(fp);
 
     for (int i = 0; i < people_count; i++)
     {
-        printf("%s: %d Nachricht*en\n", names[i], message_count[i]);
+        printf("---> %s: %d Nachricht*en\n", names[i], message_count[i]);
     }
     return 0;
 }
