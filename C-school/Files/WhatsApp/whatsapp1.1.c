@@ -18,6 +18,7 @@ int message_count[MAX_PEOPLE];
 
 void addOrUpdatePerson(char *);
 void analyzeMessages(FILE *);
+int analyzeAllSymbols(FILE *);
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +36,14 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    analyzeMessages(fp);
+
     if (!strcmp(argv[1], "-d"))
     {
-        analyzeMessages(fp);
+        fseek(fp, 0, SEEK_SET);
+        int count = analyzeAllSymbols(fp);
+        printf("Anzahl aller Zeichen: %d\n\n\n", count);
+        printf("-------------------\n\n\n");
     }
 
     fclose(fp);
@@ -66,6 +72,21 @@ void addOrUpdatePerson(char *name)
         message_count[people_count] = 1;
         people_count++;
     }
+}
+
+int analyzeAllSymbols(FILE *fp)
+{
+    int count = 0;
+    char line[MAX_LINE_LENGTH];
+    while (fgets(line, sizeof(line), fp) != NULL)
+    {
+        for (int i = 0; i < strlen(line); i++)
+        {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 void analyzeMessages(FILE *fp)
