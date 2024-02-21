@@ -1,0 +1,39 @@
+1. **strlen(const char *str):**
+   - Gibt die Länge einer Zeichenkette zurück.
+   - Beispiel: `int length = strlen("Hello"); // length wird 5 sein`
+
+2. **strcpy(char *dest, const char *src):**
+   - Kopiert den Inhalt der Quellzeichenkette `src` in die Zielzeichenkette `dest`.
+   - Beispiel: `char destination[20]; strcpy(destination, "Hello"); // destination enthält nun "Hello"`
+
+3. **strncpy(char *dest, const char *src, size_t n):**
+   - Kopiert höchstens die ersten `n` Zeichen der Quellzeichenkette `src` in die Zielzeichenkette `dest`.
+   - Beispiel: `char destination[20]; strncpy(destination, "Hello", 3); // destination enthält nun "Hel"`
+
+4. **strcat(char *dest, const char *src):**
+   - Hängt den Inhalt der Quellzeichenkette `src` an die Zielzeichenkette `dest` an.
+   - Beispiel: `char destination[20] = "Hello"; strcat(destination, " World"); // destination enthält nun "Hello World"`
+
+5. **strncat(char *dest, const char *src, size_t n):**
+   - Hängt höchstens die ersten `n` Zeichen der Quellzeichenkette `src` an die Zielzeichenkette `dest` an.
+   - Beispiel: `char destination[20] = "Hello"; strncat(destination, " World", 3); // destination enthält nun "Hello Wor"`
+
+6. **strcmp(const char *str1, const char *str2):**
+   - Vergleicht zwei Zeichenketten lexikografisch. Gibt einen Wert kleiner als, gleich oder größer als null zurück, je nachdem, ob `str1` kleiner als, gleich oder größer als `str2` ist.
+   - Beispiel: `int result = strcmp("apple", "banana"); // result könnte negativ sein`
+
+7. **strncmp(const char *str1, const char *str2, size_t n):**
+   - Vergleicht die ersten `n` Zeichen von zwei Zeichenketten lexikografisch.
+   - Beispiel: `int result = strncmp("apple", "banana", 3); // result könnte negativ sein`
+
+8. **strchr(const char *str, int c):**
+   - Sucht das erste Auftreten des Zeichens `c` in der Zeichenkette `str`. Gibt einen Zeiger auf das gefundene Zeichen oder NULL zurück, wenn es nicht gefunden wurde.
+   - Beispiel: `char *position = strchr("Hello", 'l'); // position zeigt auf das erste 'l' in "Hello"`
+
+9. **strstr(const char *haystack, const char *needle):**
+   - Sucht das erste Auftreten der Zeichenkette `needle` in der Zeichenkette `haystack`. Gibt einen Zeiger auf den Anfang der gefundenen Zeichenkette oder NULL zurück, wenn sie nicht gefunden wurde.
+   - Beispiel: `char *position = strstr("Hello World", "World"); // position zeigt auf "World" in "Hello World"`
+
+10. **strtok(char *str, const char *delimiters):**
+   - Zerlegt eine Zeichenkette `str` anhand der angegebenen Trennzeichen (`delimiters`). Gibt einen Zeiger auf das erste Token zurück und behält den internen Zustand für die nächste `strtok`-Anforderung.
+   - Beispiel: `char sentence[] = "This is a sentence."; char *token = strtok(sentence, " "); // token enthält "This"`
