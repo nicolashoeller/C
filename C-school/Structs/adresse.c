@@ -8,6 +8,9 @@ Autor: Nicolas Höller
 #include <stdlib.h>
 #include <string.h>
 
+void eingabe(struct adresse *nicolas);
+void printStruct(struct adresse *nicolas);
+
 struct adresse
 {
     char stadt[100];
@@ -16,17 +19,12 @@ struct adresse
     char hausnummer[100];
 };
 
-void eingabe(struct adresse *nicolas);
-void printStruct(struct adresse *nicolas);
-
 int main(int argc, char *argv[])
 {
     struct adresse nicolas;
     eingabe(&nicolas);
     printStruct(&nicolas);
-    struct adresse philipp;
     
-
     return 0;
 }
 
