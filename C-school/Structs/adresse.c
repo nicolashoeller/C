@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     struct adresse nicolas;
     eingabe(&nicolas);
     printStruct(&nicolas);
+    struct adresse philipp;
+    
+
     return 0;
 }
 
