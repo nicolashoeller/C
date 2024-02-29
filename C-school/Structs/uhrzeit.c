@@ -35,17 +35,14 @@ int main(int argc, char *argv[])
 
     int result = vergleiche(&zeit1, &zeit2);
 
-    if (result == 1)
+    switch (result)
     {
+    case 1:
         printf("Zeit 1 ist größer als Zeit 2\n");
-    }
-    else if (result == -1)
-    {
+        break;
+    case -1:
         printf("Zeit 2 ist größer als Zeit 1\n");
-    }
-    else
-    {
-        printf("Zeit 1 und Zeit 2 sind gleich\n");
+        break;
     }
 
     differenz diff = berechneDifferenz(&zeit1, &zeit2);
@@ -69,25 +66,44 @@ void eingabe(uhrzeit *zeit)
 int vergleiche(uhrzeit *zeit1, uhrzeit *zeit2)
 {
     if (zeit1->stunden > zeit2->stunden)
-        {return 1;}
+    {
+        return 1;
+    }
     if (zeit1->stunden < zeit2->stunden)
-        {return -1;}
+    {
+        return -1;
+    }
     if (zeit1->minuten > zeit2->minuten)
-        {return 1;}
+    {
+        return 1;
+    }
     if (zeit1->minuten < zeit2->minuten)
-        {return -1;}
+    {
+        return -1;
+    }
     if (zeit1->sekunden > zeit2->sekunden)
-        {return 1;}
+    {
+        return 1;
+    }
     if (zeit1->sekunden < zeit2->sekunden)
-        {return -1;}
+    {
+        return -1;
+    }
     return 0;
 }
 
 differenz berechneDifferenz(uhrzeit *zeit1, uhrzeit *zeit2)
 {
+    int zeit1_in_sekunden = zeit1->stunden * 3600 + zeit1->minuten * 60 + zeit1->sekunden;
+    int zeit2_in_sekunden = zeit2->stunden * 3600 + zeit2->minuten * 60 + zeit2->sekunden;
+
+    int diff_in_sekunden = abs(zeit1_in_sekunden - zeit2_in_sekunden);
+
     differenz diff;
-    diff.stunden = abs(zeit1->stunden - zeit2->stunden);
-    diff.minuten = abs(zeit1->minuten - zeit2->minuten);
-    diff.sekunden = abs(zeit1->sekunden - zeit2->sekunden);
+    diff.stunden = diff_in_sekunden / 3600;
+    diff_in_sekunden %= 3600;
+    diff.minuten = diff_in_sekunden / 60;
+    diff.sekunden = diff_in_sekunden % 60;
+
     return diff;
 }
