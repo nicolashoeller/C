@@ -1,3 +1,9 @@
+/*
+File: seitenFehler.c
+Date: 01.03.2024
+Autor: Nicolas Höller
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
