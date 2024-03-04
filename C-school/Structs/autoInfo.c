@@ -1,3 +1,9 @@
+/*
+File: autoInfo.c
+Date: 04.03.2024
+Autor: Nicolas Höller
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
