@@ -44,7 +44,9 @@ int main(int argc, char *argv[]) {
 
 int berechneWert(const car *car_t) {
     int wert = atoi(car_t->maximalGeschwindigkeit) * 50;
-    wert += car_t->antiblockiersystem ? 5000 : 0;
+    if (car_t->antiblockiersystem) {
+    wert += 5000;
+    }
     wert *= car_t->tueren;
 
     if (!strcmp(car_t->marke, "Porsche")) {
