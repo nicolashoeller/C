@@ -14,7 +14,8 @@ Autor: Nicolas Höller
 #define MARKE_LENGTH 100
 #define MAX_GESCHWINDIGKEIT_LENGTH 10
 
-typedef struct {
+typedef struct
+{
     char marke[MARKE_LENGTH];
     char maximalGeschwindigkeit[MAX_GESCHWINDIGKEIT_LENGTH];
     bool antiblockiersystem;
@@ -22,18 +23,21 @@ typedef struct {
 } car;
 
 void einspeichern(car *car_t, char *argv[]);
-void printStruct(const car *car_t);
-int berechneWert(const car *car_t);
+void printStruct(car *car_t);
+int berechneWert(car *car_t);
 
-int main(int argc, char *argv[]) {
-    if (argc != (CAR_COUNT * PARAMS_PER_CAR) + 1) {
+int main(int argc, char *argv[])
+{
+    if (argc != (CAR_COUNT * PARAMS_PER_CAR) + 1)
+    {
         fprintf(stderr, "Fehler: Bitte geben Sie genau %d Parameter für jedes der %d Autos ein.\n", PARAMS_PER_CAR, CAR_COUNT);
         return -1;
     }
 
     car cars[CAR_COUNT];
 
-    for (int i = 0; i < CAR_COUNT; i++) {
+    for (int i = 0; i < CAR_COUNT; i++)
+    {
         einspeichern(&cars[i], &argv[i * PARAMS_PER_CAR + 1]);
         printStruct(&cars[i]);
         printf("Wert des Autos: %d\n", berechneWert(&cars[i]));
@@ -42,23 +46,29 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-int berechneWert(const car *car_t) {
+int berechneWert(car *car_t)
+{
     int wert = atoi(car_t->maximalGeschwindigkeit) * 50;
-    if (car_t->antiblockiersystem) {
-    wert += 5000;
+    if (car_t->antiblockiersystem)
+    {
+        wert += 5000;
     }
     wert *= car_t->tueren;
 
-    if (!strcmp(car_t->marke, "Porsche")) {
+    if (!strcmp(car_t->marke, "Porsche"))
+    {
         wert *= 2;
-    } else if (!strcmp(car_t->marke, "Lamborghini")) {
+    }
+    else if (!strcmp(car_t->marke, "Lamborghini"))
+    {
         wert *= 20;
     }
 
     return wert;
 }
 
-void einspeichern(car *car_t, char **argv) {
+void einspeichern(car *car_t, char **argv)
+{
     strncpy(car_t->marke, argv[0], MARKE_LENGTH - 1);
     car_t->marke[MARKE_LENGTH - 1] = '\0';
 
@@ -69,9 +79,17 @@ void einspeichern(car *car_t, char **argv) {
     car_t->tueren = atoi(argv[3]);
 }
 
-void printStruct(const car *car_t) {
+void printStruct(car *car_t)
+{
     printf("\nMarke: %s\n", car_t->marke);
     printf("Maximale Geschwindigkeit: %s\n", car_t->maximalGeschwindigkeit);
-    printf("Antiblockiersystem: %s\n", car_t->antiblockiersystem ? "true" : "false");
+    if (car_t->antiblockiersystem)
+    {
+        printf("Antiblockiersystem: true\n");
+    }
+    else
+    {
+        printf("Antiblockiersystem: false\n");
+    }
     printf("Türen: %d\n", car_t->tueren);
 }
