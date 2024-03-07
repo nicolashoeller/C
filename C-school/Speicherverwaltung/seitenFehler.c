@@ -7,6 +7,9 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_LENGTH 20000 // Define a large enough size
+
+void iniArray(int *, int);
 void fifo(int, int, int *);
 void lru(int, int, int *);
 void optimal(int, int, int *);
@@ -24,7 +27,15 @@ int main(int argc, char *argv[])
     printf("Länge: ");
     scanf("%d", &laenge);
 
-    int *feld = (int *)malloc(laenge * sizeof(int));
+    if (laenge > MAX_LENGTH) {
+        printf("Error: Length exceeds maximum limit.\n");
+        return -1;
+    }
+
+    int feld[MAX_LENGTH];
+
+    iniArray(feld, laenge);
+
     printf("Referenzfolge eingeben: ");
     for (int i = 0; i < laenge; i++)
     {
@@ -50,17 +61,24 @@ int main(int argc, char *argv[])
         break;
     }
 
-    free(feld);
     return 0;
+}
+
+void iniArray(int *feld, int laenge)
+{
+    for (int i = 0; i < laenge; i++)
+    {
+        feld[i] = -1;
+    }
 }
 
 void fifo(int seiten, int laenge, int *feld)
 {
     int i, j, k, flag = 0, count = 0;
     int frame[seiten];
-    for (i = 0; i < seiten; i++)
+    for (i = 0; i < seiten; i++){
         frame[i] = -1;
-
+    }
     printf("Step\tFrame Contents\n");
     for (i = 0; i < laenge; i++)
     {
