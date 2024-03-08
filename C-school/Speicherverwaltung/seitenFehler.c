@@ -36,9 +36,10 @@ int main(int argc, char *argv[])
 
     iniArray(feld, laenge);
 
-    printf("Referenzfolge eingeben: ");
+    printf("Referenzfolge eingeben\n");
     for (int i = 0; i < laenge; i++)
     {
+        printf("----> ");
         scanf("%d", &feld[i]);
     }
 
