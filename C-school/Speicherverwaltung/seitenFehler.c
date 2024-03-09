@@ -7,7 +7,7 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LENGTH 20000 // Define a large enough size
+#define MAX_LENGTH 20000
 
 void iniArray(int *, int);
 void fifo(int, int, int *);
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     scanf("%d", &laenge);
 
     if (laenge > MAX_LENGTH) {
-        printf("Error: Length exceeds maximum limit.\n");
+        printf("Länge größer als erlaubt!!\n");
         return -1;
     }
 
