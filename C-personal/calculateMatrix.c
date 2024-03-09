@@ -1,3 +1,9 @@
+/*
+File: calculateMatrix.c
+Date: 09.03.2024
+Autor: Nicolas Höller
+*/
+
 #include <stdio.h>
 
 void enterData(int matrix[][10], int row, int column);
