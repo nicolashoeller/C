@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
     printf("Länge: ");
     scanf("%d", &laenge);
 
-    if (laenge > MAX_LENGTH) {
+    if (laenge > MAX_LENGTH)
+    {
         printf("Länge größer als erlaubt!!\n");
         return -1;
     }
@@ -76,7 +77,8 @@ void fifo(int seiten, int laenge, int *feld)
     int frame[seiten];
 
     // Initialisierung des Rahmen-Arrays mit -1, um leere Slots zu markieren
-    for (i = 0; i < seiten; i++) {
+    for (i = 0; i < seiten; i++)
+    {
         frame[i] = -1;
     }
 
@@ -106,10 +108,16 @@ void fifo(int seiten, int laenge, int *feld)
             // Ausgabe des aktuellen Schritts und des Hauptspeicherinhalts
             printf("%d\t", i + 1);
             for (k = 0; k < seiten; k++)
+            {
                 if (frame[k] == -1)
+                {
                     printf("E "); // Ausgabe 'E' für leere Slots
+                }
                 else
+                {
                     printf("%d ", frame[k]);
+                }
+            }
             printf("\n");
         }
     }
@@ -124,7 +132,8 @@ void lru(int seiten, int laenge, int *feld)
     int frame[seiten];
 
     // Initialisierung des Rahmen-Arrays und least-Arrays mit -1 bzw. 0
-    for (i = 0; i < seiten; i++) {
+    for (i = 0; i < seiten; i++)
+    {
         frame[i] = -1;
         least[i] = 0;
     }
@@ -178,10 +187,16 @@ void lru(int seiten, int laenge, int *feld)
             // Ausgabe des aktuellen Schritts und des Hauptspeicherinhalts
             printf("%d\t", i + 1);
             for (k = 0; k < seiten; k++)
+            {
                 if (frame[k] == -1)
+                {
                     printf("E "); // Ausgabe 'E' für leere Slots
+                }
                 else
+                {
                     printf("%d ", frame[k]);
+                }
+            }
             printf("\n");
         }
         else
@@ -200,7 +215,8 @@ void second_chance(int seiten, int laenge, int *feld)
     int frame[seiten], second_chance[seiten];
 
     // Initialisierung des Rahmen-Arrays und second_chance-Arrays mit -1 bzw. 0
-    for (i = 0; i < seiten; i++) {
+    for (i = 0; i < seiten; i++)
+    {
         frame[i] = -1;
         second_chance[i] = 0;
     }
@@ -259,9 +275,13 @@ void second_chance(int seiten, int laenge, int *feld)
         printf("%d\t", i + 1);
         for (j = 0; j < seiten; j++)
             if (frame[j] == -1)
+            {
                 printf("E "); // Ausgabe 'E' für leere Slots
+            }
             else
+            {
                 printf("%d ", frame[j]);
+            }
         printf("\n");
     }
 
