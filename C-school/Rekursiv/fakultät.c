@@ -6,14 +6,7 @@ Autor: Nicolas Höller
 
 #include <stdio.h>
 
-// Recursive function to calculate factorial
-unsigned long long factorial(int n) {
-    if (n == 0) {
-        return 1;
-    } else {
-        return n * factorial(n - 1);
-    }
-}
+unsigned long long factorial(int n);
 
 int main() {
     int num;
@@ -27,4 +20,13 @@ int main() {
     }
 
     return 0;
+}
+
+// Recursive function to calculate factorial
+unsigned long long factorial(int n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
 }
