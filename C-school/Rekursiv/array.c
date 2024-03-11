@@ -11,7 +11,7 @@ int arraySum(int array[], int n);
 int main() {
     int array[] = {1, 2, 3, 4, 5};
     int n = sizeof(array) / sizeof(array[0]);
-    printf("Sum of array is %d", arraySum(array, n));
+    printf("Die Summe des Arrays ist %d", arraySum(array, n));
     return 0;
 }
 
