@@ -80,7 +80,6 @@ void fifo(int seiten, int laenge, int *feld)
         frame[i] = -1;
     }
 
-    // Ausgabe der Überschrift für die Anzeige des Hauptspeicherzustands
     printf("Step\tFrame Contents\n");
 
     // Schleife durchläuft die Seitenreferenzen
@@ -130,7 +129,6 @@ void lru(int seiten, int laenge, int *feld)
         least[i] = 0;
     }
 
-    // Ausgabe der Überschrift für die Anzeige des Hauptspeicherzustands
     printf("Step\tFrame Contents\n");
 
     // Schleife durchläuft die Seitenreferenzen
@@ -207,7 +205,6 @@ void second_chance(int seiten, int laenge, int *feld)
         second_chance[i] = 0;
     }
 
-    // Ausgabe der Überschrift für die Anzeige des Hauptspeicherzustands
     printf("Step\tFrame Contents\n");
 
     // Schleife durchläuft die Seitenreferenzen
