@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
     iniArray(feld, laenge);
 
-    printf("Referenzfolge eingeben\n");
+    printf("Reihenfolge eingeben\n");
     for (int i = 0; i < laenge; i++)
     {
         printf("----> ");
