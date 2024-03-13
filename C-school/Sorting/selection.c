@@ -18,7 +18,7 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]);
 
     srand(time(NULL));
-
+    printf("Unsorted array: \n");
     for (int i = 0; i < n; i++)
     {
         arr[i] = rand() % 100;
@@ -30,9 +30,9 @@ int main()
     selection_sort(arr, n);
 
     printf("Sorted array: \n");
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++){
         printf("%d ", arr[i]);
-
+    }
     return 0;
 }
 
