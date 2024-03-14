@@ -1,6 +1,6 @@
 /*
 File: selection.c
-Date: 13.03.2024
+Date: 14.03.2024
 Autor: Nicolas Höller
 */
 
@@ -8,55 +8,71 @@ Autor: Nicolas Höller
 #include <stdlib.h>
 #include <time.h>
 
-#define ARRAY_SIZE 10
+#define ARR_LENGHT 20
 
-void selection_sort(int *, int);
+void selection(int*);
+void iniArray(int*);
+void printArray(int*);
 
-int main()
+int main(int argc, char* argv[])
 {
-    int arr[ARRAY_SIZE];
-    int n = sizeof(arr) / sizeof(arr[0]);
-
     srand(time(NULL));
 
-    printf("Unsorted array: \n");
+    int array[ARR_LENGHT];
 
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100;
-        printf("%d ", arr[i]);
-    }
+    printf("Unsortiertes Array: \n");
 
-    printf("\n");
+    iniArray(array);
+    printArray(array);
 
-    selection_sort(arr, n);
+    selection(array);
 
-    printf("Sorted array: \n");
+    printf("Sortiertes Array: \n");
 
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
+    printArray(array);
 
     return 0;
 }
 
-void selection_sort(int *arr, int n)
-{
-    int min_idx, temp;
-
-    for (int i = 0; i < n - 1; i++)
+void selection(int * array){
+    int temp = 0;
+    int min = 0;
+    for (int i = 0; i < ARR_LENGHT - 1; i++)
     {
-        min_idx = i;
-        for (int j = i + 1; j < n; j++)
+        min = i;
+        for (int j = i + 1; j < ARR_LENGHT; j++)
         {
-            if (arr[j] < arr[min_idx])
+            if (array[j] < array[min])
             {
-                min_idx = j;
+                min = j;
             }
+            
         }
-        temp = arr[min_idx];
-        arr[min_idx] = arr[i];
-        arr[i] = temp;
+
+        temp = array[min];
+        array[min] = array[i];
+        array[i] = temp;
     }
+    
+    return;
+}
+
+void iniArray(int * array){
+    for (int i = 0; i < ARR_LENGHT; i++)
+    {
+        array[i] = rand() % 100;
+    }
+
+    return;
+}
+
+void printArray(int* array){
+    for (int i = 0; i < ARR_LENGHT; i++)
+    {
+        printf("%d ", array[i]);
+    }
+    
+    printf("\n");
+
+    return;
 }
