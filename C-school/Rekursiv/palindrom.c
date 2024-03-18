@@ -13,7 +13,7 @@ Autor: Nicolas Höller
 
 void eingabe(char* palindrom);
 void lowerChar(char* palindrom);
-int checkPalindom(char* palindrom, int i, int n);
+int checkPalindrom(char* palindrom, int i, int n);
 
 int main(int argc, char* argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
     int n = strlen(palindrom);
     int i = 0;
 
-    if (checkPalindom(palindrom, i, n - 1)){
+    if (checkPalindrom(palindrom, i, n - 1)){
         printf("Dein String ist ein Palindrom\n");
     }
     else
@@ -53,7 +53,7 @@ void lowerChar(char* palindrom){
     return;
 }
 
-int checkPalindom(char* palindrom, int i, int n){
+int checkPalindrom(char* palindrom, int i, int n){
     if (i >= n)
     {
         return 1;
@@ -64,6 +64,6 @@ int checkPalindom(char* palindrom, int i, int n){
     }
     else
     {
-        return checkPalindom(palindrom, i+1, n-1);
+        return checkPalindrom(palindrom, i+1, n-1);
     }
 }
