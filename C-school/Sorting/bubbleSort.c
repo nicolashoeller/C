@@ -6,16 +6,35 @@ Autor: Nicolas Höller
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ARRLENGTH 20
+#define ARR_LENGTH 20
+
+void iniArray(int* array);
+void printArray(int* array);
+void bubble(int* array);
 
 int main(int argc, char* argv[])
 {
-    int array[ARRLENGTH] = { 2, 5, 4, 3, 10, 9, 7, 8, 1, 6, 12, 11, 15, 13, 18, 20, 19, 17, 16, 14 };
+    int array[ARR_LENGTH];
+
+    iniArray(array);
+    
+    printf("Unsortiertes Array: \n");
+    printArray(array);
+
+    bubble(array);
+
+    printf("Sortiertes Array: \n");
+    printArray(array);
+
+    return 0;
+}
+
+void bubble(int* array){
     int temp = 0;
 
-    for (int i = 0; i < ARRLENGTH; i++)
+    for (int i = 0; i < ARR_LENGTH; i++)
     {
-        for (int j = 0; j < ARRLENGTH - 1 - i; j++)
+        for (int j = 0; j < ARR_LENGTH - 1 - i; j++)
         {
             if (array[j] > array[j + 1])
             {
@@ -25,13 +44,21 @@ int main(int argc, char* argv[])
             }
         }
 
-        printf("Durchlauf %d: ", i + 1);
-        for (int k = 0; k < ARRLENGTH; k++)
-        {
-            printf("%d ", array[k]);
-        }
-        printf("\n");
     }
+}
 
-    return 0;
+void iniArray(int * array){
+    for (int i = 0; i < ARR_LENGTH; i++)
+    {
+        array[i] = rand() % 100;
+    }
+}
+
+void printArray(int* array){
+    for (int i = 0; i < ARR_LENGTH; i++)
+    {
+        printf("%d ", array[i]);
+    }
+    
+    printf("\n");
 }
