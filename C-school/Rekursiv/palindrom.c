@@ -41,16 +41,12 @@ int main(int argc, char* argv[])
 void eingabe(char* palindrom){
     printf("Gib deinen Namen ein: ");
     scanf("%s", palindrom);
-
-    return;
 }
 
 void lowerChar(char* palindrom){
     for(int i = 0; i < strlen(palindrom); i++){
         palindrom[i] = tolower(palindrom[i]);
     }
-
-    return;
 }
 
 int checkPalindrom(char* palindrom, int i, int n){
