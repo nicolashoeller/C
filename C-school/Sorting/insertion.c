@@ -6,6 +6,7 @@ Autor: Nicolas Höller
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #define ARR_LENGTH 20
 
@@ -16,6 +17,8 @@ void printArray(int* array);
 
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
+
     int array[ARR_LENGTH];
 
     iniArray(array);
