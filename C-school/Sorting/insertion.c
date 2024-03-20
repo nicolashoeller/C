@@ -34,8 +34,8 @@ int main(int argc, char* argv[])
 }
 
 void insertion(int* array) {
-    int i, j;
-    for (i = 1; i < ARR_LENGTH; i++) {
+    int j;
+    for (int i = 1; i < ARR_LENGTH; i++) {
         j = i;
         while (j > 0 && array[j - 1] > array[j]) {
             verschieben(array, j, j - 1);
