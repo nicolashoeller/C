@@ -8,7 +8,7 @@ Autor: Nicolas Höller
 #include <stdlib.h>
 #include <time.h>
 
-#define ARR_LENGHT 20
+#define ARR_LENGTH 20
 
 void selection(int*);
 void iniArray(int*);
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 {
     srand(time(NULL));
 
-    int array[ARR_LENGHT];
+    int array[ARR_LENGTH];
 
     printf("Unsortiertes Array: \n");
 
@@ -37,10 +37,10 @@ int main(int argc, char* argv[])
 void selection(int * array){
     int temp = 0;
     int min = 0;
-    for (int i = 0; i < ARR_LENGHT - 1; i++)
+    for (int i = 0; i < ARR_LENGTH - 1; i++)
     {
         min = i;
-        for (int j = i + 1; j < ARR_LENGHT; j++)
+        for (int j = i + 1; j < ARR_LENGTH; j++)
         {
             if (array[j] < array[min])
             {
@@ -58,7 +58,7 @@ void selection(int * array){
 }
 
 void iniArray(int * array){
-    for (int i = 0; i < ARR_LENGHT; i++)
+    for (int i = 0; i < ARR_LENGTH; i++)
     {
         array[i] = rand() % 100;
     }
@@ -67,7 +67,7 @@ void iniArray(int * array){
 }
 
 void printArray(int* array){
-    for (int i = 0; i < ARR_LENGHT; i++)
+    for (int i = 0; i < ARR_LENGTH; i++)
     {
         printf("%d ", array[i]);
     }
