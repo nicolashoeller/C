@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 {
     int array[ARR_LENGTH];
     clock_t start, end;
-    double cpu_time_used;
+    double time;
 
     iniArray(array);
 
@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
     insertion(array, ARR_LENGTH);
     end = clock();
 
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    time = ((double) (end - start)) / CLOCKS_PER_SEC;
 
-    printf("Ausführungszeit: %f Sekunden\n", cpu_time_used);
+    printf("Ausführungszeit: %f Sekunden\n", time);
 
     return 0;
 }
