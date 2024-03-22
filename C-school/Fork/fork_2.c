@@ -20,10 +20,10 @@ int main(int argc, char* argv[])
     
     if (id > 0)
     {
-        printf("Ich bin der Vaterprozess\n");
+        printf("Ich bin der Vaterprozess mit der ID: %d\n", getpid());
     }
     else
     {
-        printf("Ich bin der Kindprozess\n");
+        printf("Ich bin der Kindprozess mit der ID: %d\n", getpid());
     }
 }
