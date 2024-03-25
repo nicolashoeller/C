@@ -23,10 +23,7 @@ int main(int argc, char* argv[])
 
     lowerChar(palindrom);
 
-    int n = strlen(palindrom);
-    int i = 0;
-
-    if (checkPalindrom(palindrom, i, n - 1)){
+    if (checkPalindrom(palindrom, 0, strlen(palindrom) - 1)){
         printf("Dein String ist ein Palindrom\n");
     }
     else
