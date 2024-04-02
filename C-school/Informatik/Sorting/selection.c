@@ -10,7 +10,7 @@ Autor: Nicolas Höller
 
 #define ARR_LENGTH 20
 
-void selection(int*);
+void selectionSortRecursive(int *array, int start, int n) ;
 void iniArray(int*);
 void printArray(int*);
 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     iniArray(array);
     printArray(array);
 
-    selection(array);
+    selectionSortRecursive(array, 0, ARR_LENGTH);
 
     printf("Sortiertes Array: \n");
 
@@ -34,27 +34,25 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-void selection(int * array){
-    int temp = 0;
-    int min = 0;
-    for (int i = 0; i < ARR_LENGTH - 1; i++)
-    {
-        min = i;
-        for (int j = i + 1; j < ARR_LENGTH; j++)
-        {
-            if (array[j] < array[min])
-            {
-                min = j;
-            }
-            
-        }
-
-        temp = array[min];
-        array[min] = array[i];
-        array[i] = temp;
+void selectionSortRecursive(int *array, int start, int n) {
+    if (start >= n-1){
+        return;
     }
-    
-    return;
+
+    int min_index = start;
+    for (int i = start+1; i < n; i++) {
+        if (array[i] < array[min_index]){
+            min_index = i;
+        }
+    }
+
+    if (min_index != start) {
+        int temp = array[start];
+        array[start] = array[min_index];
+        array[min_index] = temp;
+    }
+
+    selectionSortRecursive(array, start+1, n);
 }
 
 void iniArray(int * array){
