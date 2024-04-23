@@ -20,7 +20,7 @@ Bruch ergebnis(Bruch bruch1, Bruch bruch2);
 int main(int argc, char* argv[])
 {
     if(argc != 5){
-        printf("Gib zwei Brüche an! Format: num1 num2 num3 num4");
+        printf("Gib zwei Brüche an! Format: num1 num2 num3 num4\n");
         return -1;
     }
 
