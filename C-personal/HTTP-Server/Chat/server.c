@@ -45,8 +45,6 @@ int main(int argc, char* argv[])
 
     startIncomingConnections(serverfd);
 
-   
-
     printf("[*] Shutting down server..\n\n");
 
     if (shutdown(serverfd, SHUT_RDWR) < 0)
