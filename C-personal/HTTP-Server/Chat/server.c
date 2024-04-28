@@ -17,13 +17,15 @@ struct AcceptedSocket
 };
 
 struct AcceptedSocket * acceptClientConnection(int serverfd);
+void receiveAndPrintResponse(int clientSocketFD);
+void startIncomingConnections(int serverfd);
+void receiveAndPrintResponseSeperateThread(struct AcceptedSocket*pSocket);
 
 int main(int argc, char* argv[])
 {
     int serverfd, clientfd,result;
     char buffer[4096];
     struct sockaddr_in *servaddr;
-    ssize_t amountReceived;
 
     if ((serverfd = create_Ipv4_Socket()) < 0)
         error_and_die("[!] Failed to create socket.\n");
@@ -41,22 +43,12 @@ int main(int argc, char* argv[])
         error_and_die("[!] Failed to start listening on the socket.\n");
     printf("[*] Successfully started listening on port %d.\n", SERVER_PORT);
 
-    struct AcceptedSocket*clientSocket = acceptClientConnection(serverfd);
+    startIncomingConnections(serverfd);
 
-    while (true)
-    {
-        if ((amountReceived = recv(clientSocket->acceptedSocketFD, buffer, sizeof(buffer), 0)) > 0){
-            buffer[amountReceived] = '\0';
-            printf("\nResponse: %s", buffer);
-        }
-        
-        if (amountReceived == 0 || amountReceived < 0)
-            break;
-    }
+   
 
     printf("[*] Shutting down server..\n\n");
 
-    close(clientSocket->acceptedSocketFD);
     if (shutdown(serverfd, SHUT_RDWR) < 0)
         error_and_die("[!] Failed to shutdown the server socket.\n");
 
@@ -77,4 +69,35 @@ struct AcceptedSocket* acceptClientConnection(int serverfd) {
         acceptedSocket->error = clientfd;
     
     return acceptedSocket;
+}
+
+void receiveAndPrintResponse(int clientSocketFD) {
+    char buffer[1024];
+    ssize_t amountReceived;
+
+    while (true) {
+        amountReceived = recv(clientSocketFD, buffer, sizeof(buffer) - 1, 0);
+        if (amountReceived > 0) {
+            buffer[amountReceived] = '\0';
+            printf("\nResponse: %s", buffer);
+        }
+
+        if (amountReceived <= 0)
+            break;
+    }
+    close(clientSocketFD);
+}
+
+void startIncomingConnections(int serverfd){
+    while (true)
+    {
+        struct AcceptedSocket*clientSocket = acceptClientConnection(serverfd);
+
+        receiveAndPrintResponseSeperateThread(clientSocket);
+    }
+}
+
+void receiveAndPrintResponseSeperateThread(struct AcceptedSocket*pSocket){
+    pthread_t id;
+    pthread_create(&id, NULL, receiveAndPrintResponse, pSocket->acceptedSocketFD);
 }
