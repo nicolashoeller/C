@@ -16,7 +16,7 @@ struct AcceptedSocket
     bool acceptedSuccessfully;
 };
 
-struct AcceptedSocket acceptedSockets[10];
+struct AcceptedSocket acceptedSockets[30];
 int acceptedSocketsCount = 0;
 
 struct AcceptedSocket * acceptClientConnection(int serverfd);
@@ -74,14 +74,13 @@ struct AcceptedSocket* acceptClientConnection(int serverfd) {
 }
 
 void receiveAndPrintResponse(int clientSocketFD) {
-    char buffer[1024];
+    char buffer[4096];
     ssize_t amountReceived;
 
     while (true) {
         amountReceived = recv(clientSocketFD, buffer, sizeof(buffer) - 1, 0);
         if (amountReceived > 0) {
             buffer[amountReceived] = '\0';
-            
             printf("%s", buffer);
 
             sendReceivedMessageToClients(buffer, clientSocketFD);
