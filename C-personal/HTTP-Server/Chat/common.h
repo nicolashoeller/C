@@ -16,6 +16,7 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <netdb.h>
+#include <stdbool.h>
 
 #define MAXLINE 4096
 #define SA struct sockaddr
