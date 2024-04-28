@@ -1,4 +1,4 @@
-CC=clang
+CC=gcc
 CFLAGS=-I.
 
 all: chatClient chatServer
