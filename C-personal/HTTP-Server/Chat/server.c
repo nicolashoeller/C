@@ -81,7 +81,7 @@ void receiveAndPrintResponse(int clientSocketFD) {
         amountReceived = recv(clientSocketFD, buffer, sizeof(buffer) - 1, 0);
         if (amountReceived > 0) {
             buffer[amountReceived] = '\0';
-            printf("%s", buffer);
+            printf("> %s", buffer);
 
             sendReceivedMessageToClients(buffer, clientSocketFD);
         }
@@ -115,5 +115,5 @@ void startIncomingConnections(int serverfd){
 
 void createNewThread(struct AcceptedSocket*pSocket){
     pthread_t id;
-    pthread_create(&id, NULL, receiveAndPrintResponse, pSocket->acceptedSocketFD);
+    pthread_create(&id, NULL, (void*)receiveAndPrintResponse, pSocket->acceptedSocketFD);
 }
