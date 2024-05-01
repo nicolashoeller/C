@@ -16,17 +16,19 @@ int enterValue();
 void insertElement(Node **rootNode);
 void _insertElement(Node **rootNode, int value);
 void printLinkedLists(Node *rootNode);
+void deallocateNodes(Node **rootNode);
 
 int main(int argc, char* argv[])
 {
     Node *rootNode = NULL;
-    int value;
 
-
-    insertElement(&rootNode);
+    for (int i = 0; i < 5; i++)
+    {
+        insertElement(&rootNode);
+    }
 
     printLinkedLists(rootNode);
-    free(rootNode);
+    deallocateNodes(&rootNode);
 
     return 0;
 }
@@ -82,4 +84,15 @@ void printLinkedLists(Node *rootNode){
         current = current->next;
         i++;
     }
+}
+
+void deallocateNodes(Node **rootNode){
+    Node *current = *rootNode;
+    while (current != NULL)
+    {
+        Node *temp = current;
+        current = current->next;
+        free(temp);
+    }
+    *rootNode = NULL;
 }
