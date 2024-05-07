@@ -27,7 +27,8 @@ int main() {
         printf("\n[*] Menu:\n");
         printf("[1] Insert a value\n");
         printf("[2] Print the tree\n");
-        printf("[3] Exit\n");
+        printf("[3] Search an element\n");
+        printf("[4] Exit\n");
         printf("[+] Enter your choice: ");
         scanf("%d", &choice);
 
