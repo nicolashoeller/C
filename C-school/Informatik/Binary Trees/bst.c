@@ -1,7 +1,7 @@
 /*
 File: bst.c
 Date: 06.05.2024
-Autor: links Höller
+Author: Nicolas Höller
 */
 
 #include <stdio.h>
@@ -9,8 +9,8 @@ Autor: links Höller
 
 typedef struct Node {
     int value;
-    struct Node *links;
-    struct Node *rechts;
+    struct Node *left;
+    struct Node *right;
 } Node;
 
 Node* createNode(int value);
@@ -70,17 +70,17 @@ Node* searchNode(Node *rootNode, int value) {
     }
 
     if (rootNode->value < value) {
-        return searchNode(rootNode->rechts, value);
+        return searchNode(rootNode->right, value);
     }
 
-    return searchNode(rootNode->links, value);
+    return searchNode(rootNode->left, value);
 }
 
 Node* createNode(int value) {
     Node *newNode = (Node*)malloc(sizeof(Node));
     newNode->value = value;
-    newNode->links = NULL;
-    newNode->rechts = NULL;
+    newNode->left = NULL;
+    newNode->right = NULL;
     return newNode;
 }
 
@@ -88,24 +88,24 @@ void insertNode(Node **rootNode, int value) {
     if (*rootNode == NULL) {
         *rootNode = createNode(value);
     } else if (value < (*rootNode)->value) {
-        insertNode(&(*rootNode)->links, value);
+        insertNode(&(*rootNode)->left, value);
     } else {
-        insertNode(&(*rootNode)->rechts, value);
+        insertNode(&(*rootNode)->right, value);
     }
 }
 
 void printInOrder(Node *rootNode) {
     if (rootNode != NULL) {
-        printInOrder(rootNode->links);
+        printInOrder(rootNode->left);
         printf("%d ", rootNode->value);
-        printInOrder(rootNode->rechts);
+        printInOrder(rootNode->right);
     }
 }
 
 void deallocateNodes(Node *rootNode) {
     if (rootNode != NULL) {
-        deallocateNodes(rootNode->links);
-        deallocateNodes(rootNode->rechts);
+        deallocateNodes(rootNode->left);
+        deallocateNodes(rootNode->right);
         free(rootNode);
     }
 }
