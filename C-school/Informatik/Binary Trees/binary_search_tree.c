@@ -171,10 +171,21 @@ void deleteNode(Node **rootNode, Node *parent){
         Node *parentOfGreatest = getParentNode(*rootNode, greatestOfLeft);
         (*rootNode)->value = greatestOfLeft->value;
 
-        if (parentOfGreatest != NULL) {
-        parentOfGreatest->right = greatestOfLeft->left;
-        } else {
-            (*rootNode)->left = greatestOfLeft->left;
+        if (greatestOfLeft->left != NULL)
+        {
+            Node *childOfGreatest = greatestOfLeft->left;
+            if (parentOfGreatest->left == greatestOfLeft) {
+                parentOfGreatest->left = childOfGreatest;
+            } else {
+                parentOfGreatest->right = childOfGreatest;
+            }
+        } 
+        else {
+            if (parentOfGreatest->left == greatestOfLeft) {
+                parentOfGreatest->left = NULL;
+            } else {
+                parentOfGreatest->right = NULL;
+            }
         }
 
         free(greatestOfLeft);
