@@ -45,35 +45,20 @@ void insertElement(Node **rootNode){
     _insertElement(rootNode, value);
 }
 
-void _insertElement(Node **rootNode, int value){
-    Node *newNode = malloc(sizeof(Node));
-    if (newNode == NULL)
-    {
-        printf("Error while allocating memory.");
-        exit(1);
-    }
-    
-    newNode->next = NULL;
-    newNode->x = value;
-
-    if (*rootNode == NULL)
-    {
-        *rootNode = newNode;
-        if (rootNode == NULL)
+void _insertElement(Node **node, int value){
+    if (*node == NULL){
+        Node *newNode = malloc(sizeof(Node));
+        if (newNode == NULL)
         {
             printf("Error while allocating memory.");
             exit(1);
         }
-        return;
+        newNode->next = NULL;
+        newNode->x = value;
+        *node = newNode;
+    } else {
+        _insertElement(&((*node)->next), value);
     }
-
-    Node *current = *rootNode;
-
-    while (current->next != NULL){
-        current = current->next;
-    }
-
-    current->next = newNode;
 }
 
 void printLinkedLists(Node *rootNode){
