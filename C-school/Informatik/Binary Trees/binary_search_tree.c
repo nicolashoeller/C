@@ -21,6 +21,7 @@ void insertNode(Node **rootNode, int value);
 void printInOrder(Node *rootNode);
 void deallocateNodes(Node *rootNode);
 void deleteNode(Node **rootNode, Node *parent);
+void printBranchHeights(Node *node, int height);
 
 int main() {
     Node *rootNode = NULL;
@@ -31,8 +32,9 @@ int main() {
         printf("[1] Insert a value\n");
         printf("[2] Print the tree\n");
         printf("[3] Search an element\n");
-        printf("[4] Delete an element\n");
-        printf("[5] Exit\n");
+        printf("[4] Print Branch Heights\n");
+        printf("[5] Delete an element\n");
+        printf("[6] Exit\n");
         printf("[+] Enter your choice: ");
         scanf("%d", &choice);
 
@@ -58,6 +60,10 @@ int main() {
                 }
                 break;
             case 4:
+                printf("\n");
+                printBranchHeights(rootNode, 0);
+                break;
+            case 6:
                 printf("\n[+] Enter the value to delete: ");
                 scanf("%d", &value);
                 foundNode = searchNode(rootNode, value);
@@ -221,4 +227,13 @@ Node* findGreatestOfLeft(Node *rootNode){
     }
     
     findGreatestOfLeft(rootNode->right);
+}
+
+void printBranchHeights(Node *node, int height) {
+    if (node == NULL) {
+        return;
+    }
+    printf("Height of branch with root value %d: %d\n", node->value, height);
+    printBranchHeights(node->left, height + 1);
+    printBranchHeights(node->right, height + 1);
 }
