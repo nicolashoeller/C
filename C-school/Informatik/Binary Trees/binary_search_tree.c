@@ -63,7 +63,7 @@ int main() {
                 printf("\n");
                 printBranchHeights(rootNode, 0);
                 break;
-            case 6:
+            case 5:
                 printf("\n[+] Enter the value to delete: ");
                 scanf("%d", &value);
                 foundNode = searchNode(rootNode, value);
@@ -74,7 +74,7 @@ int main() {
                     printf("[!] Value not found in the tree.\n");
                 }
                 break;
-            case 5:
+            case 6:
                 deallocateNodes(rootNode);
                 exit(0);
             default:
