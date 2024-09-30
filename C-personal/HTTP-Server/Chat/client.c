@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 void createNewThread(int socketfd)
 {
     pthread_t id;
-    pthread_create(&id, NULL, (void*)listenAndPrint, socketfd);
+    pthread_create(&id, NULL, (void*)listenAndPrint, (void*)socketfd);
 }
 
 void listenAndPrint(int socketfd)

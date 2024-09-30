@@ -115,5 +115,5 @@ void startIncomingConnections(int serverfd){
 
 void createNewThread(struct AcceptedSocket*pSocket){
     pthread_t id;
-    pthread_create(&id, NULL, (void*)receiveAndPrintResponse, pSocket->acceptedSocketFD);
+    pthread_create(&id, NULL, (void*)receiveAndPrintResponse, (void*)pSocket->acceptedSocketFD);
 }
