@@ -32,19 +32,19 @@ int main(int argc, char* argv[])
         kill(getppid(), SIGINT);
         signal_received = 0;
         printf("Child: waiting for signal\n");
-        while (!signal_received){}
+        while (!signal_received);
         signal_received = 0;
         printf("Child: signal received\n");
         kill(getppid(), SIGINT);
     }
     else
     {
-        while (!signal_received){}
+        while (!signal_received);
         signal_received = 0;
         printf("Parent: sending signal\n");
         kill(pid, SIGINT);
         printf("Parent: waiting for response\n");
-        while (!signal_received){}
+        while (!signal_received);
         signal_received = 0;
         printf("Parent: response received\n");
     }
