@@ -1,3 +1,9 @@
+/*
+File: threads5.c
+Date: 20.11.2024
+Autor: Nicolas Höller
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
